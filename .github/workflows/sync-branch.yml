@@ -21,10 +21,12 @@ jobs:
           timeout_minutes: 5
           max_attempts: 3
           retry_wait_seconds: 300
+
           command: |
             DEST_OWNER="php24backup"
             DEST_REPO="games"
-            BRANCH_NAME="${GITHUB_REF#refs/heads}"
+
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
 
             REMOTE_URL="https://x-access-token:${{ secrets.DESTINATION_GITHUB_TOKEN }}@github.com/${DEST_OWNER}/${DEST_REPO}.git"
 
