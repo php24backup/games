@@ -1,0 +1,53 @@
+name: Sync All Branches to Destination Account
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  sync-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push Branch with Auto-Retry
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 5     # Timeout for each push attempt
+          max_attempts: 3        # 1 initial attempt + 2 retries
+          retry_wait_seconds: 300 # Wait 5 minutes (300s) between failures
+          command: |
+            DEST_OWNER="php24backup"
+            DEST_REPO="games" # Replace with your target repo name
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+            
+            REMOTE_URL="https://x-access-token:${{ secrets.DESTINATION_GITHUB_TOKEN }}@github.com/${DEST_OWNER}/${DEST_REPO}.git"
+            
+            git remote add destination "$REMOTE_URL" || true
+            git push destination "HEAD:refs/heads/${BRANCH_NAME}" --force
+
+      # =========================================================================
+      # EMAIL NOTIFICATION (DISABLED/COMMENTED OUT FOR NOW)
+      # =========================================================================
+      # - name: Send Failure Notification Email
+      #   if: failure() # Runs ONLY if all retry attempts fail
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     server_address: ${{ secrets.MAIL_SERVER }}
+      #     server_port: ${{ secrets.MAIL_PORT }}
+      #     username: ${{ secrets.MAIL_USERNAME }}
+      #     password: ${{ secrets.MAIL_PASSWORD }}
+      #     subject: "GitHub Action Failed: Sync to php44/${{ github.event.repository.name }}"
+      #     to: ${{ secrets.NOTIFICATION_EMAIL }}
+      #     from: "GitHub Workflow Alert <${{ secrets.MAIL_USERNAME }}>"
+      #     body: |
+      #       The branch sync workflow failed after 3 attempts.
+      #       
+      #       Repository: ${{ github.repository }}
+      #       Branch: ${{ github.ref_name }}
+      #       Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      # =========================================================================
