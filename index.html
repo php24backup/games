@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#00d2ff">
+  <meta name="description" content="High-retention educational HTML5 word swipe and connection puzzle game.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <!-- Dynamically attach Web App Manifest only when hosted over HTTP/HTTPS to prevent CORS errors on file:// protocol -->
+  <script>
+    if (window.location.protocol.startsWith('http')) {
+      const manifestLink = document.createElement('link');
+      manifestLink.rel = 'manifest';
+      manifestLink.href = 'manifest.json';
+      document.head.appendChild(manifestLink);
+    }
+  </script>
+  <!-- Platform Compliant CSS: 0 External Dependencies, 0 External Fonts -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Root Responsive Game Shell (Clamped for Mobile Portrait & Desktop Containment) -->
+  <div id="game-app">
+    
+    <!-- TOP STATUS BAR: Level indicator, Timer, and Coin Economy -->
+    <header id="top-bar">
+      <!-- Left Controls: Settings Gear, Sound Toggle, Level Select, Daily Challenge, and Daily Back -->
+      <div class="header-left">
+        <button id="daily-back-btn" class="back-to-levels-btn modal-hidden" aria-label="Back to Levels" title="Exit Daily Mode & Back to Levels">
+          <span class="back-arrow">‹</span> <span class="back-text">Levels</span>
+        </button>
+        <button id="level-select-btn" class="icon-btn" aria-label="Select Level" title="Level Selection (Browse & Replay)">
+          🗺️
+        </button>
+        <button id="daily-puzzle-btn" class="icon-btn daily-btn" aria-label="Daily Challenge" title="Daily Puzzle & Streak">
+          📅<span id="daily-streak-badge" class="daily-streak-badge">🔥0</span>
+        </button>
+        <button id="settings-btn" class="icon-btn" aria-label="Game Settings" title="Settings">
+          ⚙️
+        </button>
+        <button id="sound-btn" class="icon-btn" aria-label="Toggle Audio" title="Sound Mute/Unmute">
+          🔊
+        </button>
+      </div>
+
+      <!-- Center Status: Level & Countdown Timer -->
+      <div class="header-center">
+        <div id="level-badge" class="stat-badge clickable-badge" title="Click to Select Level" role="button" tabindex="0" aria-label="Select Level">
+          <span class="stat-label">LVL</span>
+          <span id="level-number" class="stat-value">1</span><span id="level-total" class="stat-total">/20</span>
+          <span class="badge-dropdown-icon">▾</span>
+        </div>
+        <div id="timer-badge" class="stat-badge" title="Remaining Time">
+          <span class="stat-icon">⏳</span>
+          <span id="timer-display" class="stat-value">02:00</span>
+        </div>
+      </div>
+
+      <!-- Right Economy: Player Coin Balance -->
+      <div class="header-right">
+        <div id="coin-badge" class="coin-badge" title="Coin Balance">
+          <span class="coin-icon">🪙</span>
+          <span id="coin-display" class="coin-value">10</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- WORD TARGETS & PROGRESS SECTION (Supports 10-15 Target Words) -->
+    <section id="target-words-section">
+      <div class="section-header-row">
+        <div class="section-title-group">
+          <span class="section-title">TARGET WORDS (<span id="target-progress">0/10</span>)</span>
+          <span id="bonus-counter-badge" class="bonus-tag" title="Bonus Words mapped">Bonus: 0 🪙</span>
+        </div>
+        <div class="action-buttons-group">
+          <button id="hint-btn" class="hint-btn hint-action-btn" title="Hint: Reveal next word (2🪙)" aria-label="Use Hint">
+            <span class="hint-icon">💡</span>
+            <span class="hint-label">Hint</span>
+            <span id="hint-cost-badge" class="hint-cost-badge">2🪙</span>
+          </button>
+          <button id="watch-ad-btn" class="watch-ad-corner-btn watch-ad-btn" title="Watch Video to receive 50 coins">
+            <span class="ad-btn-icon">🎬</span>
+            <span class="ad-btn-text">+50 Coins</span>
+          </button>
+        </div>
+      </div>
+      <!-- Scrollable Word Bank Chips -->
+      <div id="target-words-list" class="words-container" aria-label="Target words to find">
+        <!-- Target word cards injected dynamically -->
+      </div>
+    </section>
+
+    <!-- REAL-TIME MAPPED WORD PREVIEW -->
+    <div id="word-preview-container">
+      <div id="word-preview-text" class="word-preview-text">CONNECT LETTERS</div>
+    </div>
+
+    <!-- MAIN GAME BOARD: Dynamic Canvas for Letter Matrix & Swipe Trajectory -->
+    <main id="canvas-container">
+      <canvas id="game-canvas"></canvas>
+    </main>
+
+    <!-- TOAST NOTIFICATION: Floating Feedback for Economy, Bonus Words & Warnings -->
+    <div id="toast-message" class="toast-hidden" role="alert" aria-live="assertive"></div>
+
+    <!-- SETTINGS MODAL: Language Selection (Default: Hindi) & Audio Settings -->
+    <div id="settings-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h2 class="modal-title">Word-Mapping Settings</h2>
+          <button id="close-settings-btn" class="modal-close-btn" aria-label="Close Settings">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-row">
+            <label for="language-select" class="setting-label">
+              <span class="label-title">Translation Language</span>
+              <span class="label-desc">Language used when translating found words</span>
+            </label>
+            <select id="language-select" class="setting-select">
+              <option value="hindi" selected>Hindi (हिंदी)</option>
+              <option value="telugu">Telugu (తెలుగు)</option>
+              <option value="chinese">Chinese (简体中文)</option>
+              <option value="spanish">Spanish (Español)</option>
+              <option value="french">French (Français)</option>
+              <option value="german">German (Deutsch)</option>
+              <option value="arabic">Arabic (العربية)</option>
+              <option value="japanese">Japanese (日本語)</option>
+              <option value="russian">Russian (Русский)</option>
+              <option value="portuguese">Portuguese (Português)</option>
+              <option value="italian">Italian (Italiano)</option>
+              <option value="korean">Korean (한국어)</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <label for="sound-toggle-input" class="setting-label">
+              <span class="label-title">Sound Effects</span>
+              <span class="label-desc">Procedurally generated Web Audio sounds</span>
+            </label>
+            <input type="checkbox" id="sound-toggle-input" checked class="setting-checkbox">
+          </div>
+          <div class="setting-row">
+            <button id="settings-level-select-btn" class="action-btn secondary-btn" style="width: 100%;">
+              🗺️ Select Level / Progression
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="save-settings-btn" class="action-btn primary-btn">Save &amp; Return</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REWARDED VIDEO AD MODAL (Simulated Monetization Flow) -->
+    <div id="ad-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog ad-dialog">
+        <div class="modal-header">
+          <h2 class="modal-title">Sponsored Showcase</h2>
+          <button id="close-ad-btn" class="modal-close-btn" aria-label="Close Ad Showcase">✕</button>
+        </div>
+        <div class="modal-body ad-body">
+          <div class="ad-video-mock">
+            <div class="ad-screen">
+              <div class="ad-pulse-circle">🎬</div>
+              <div class="ad-sponsor-text">Simulating Partner Video Showcase...</div>
+              <div class="ad-timer-countdown">Reward unlocks in: <span id="ad-seconds-left">4</span>s</div>
+              <div class="ad-progress-track">
+                <div id="ad-progress-bar" class="ad-progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="claim-ad-reward-btn" class="action-btn primary-btn" disabled>
+            Please Wait...
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL CLEAR CELEBRATION MODAL -->
+    <div id="level-clear-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog celebration-dialog">
+        <div class="modal-header">
+          <h2 class="modal-title">🎉 Level Cleared!</h2>
+        </div>
+        <div class="modal-body celebration-body">
+          <p class="celebration-subtitle">You mapped all primary target words!</p>
+          <div class="reward-box">
+            <span class="reward-icon">🪙</span>
+            <span class="reward-label">Level Bonus:</span>
+            <span id="level-reward-coins" class="reward-value">+15 Coins</span>
+          </div>
+          <div class="stats-summary">
+            <div class="stat-item">
+              <span class="stat-name">Clear Time:</span>
+              <span id="clear-time-val" class="stat-number">45s</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-name">Level Score:</span>
+              <span id="clear-score-val" class="stat-number">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-name">Total Coins:</span>
+              <span id="clear-coins-total" class="stat-number">115</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-dual">
+          <button id="clear-level-select-btn" class="action-btn secondary-btn">🗺️ Levels</button>
+          <button id="next-level-btn" class="action-btn primary-btn">Next Level ➜</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME OVER (TIME EXPIRED) MODAL -->
+    <div id="game-over-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h2 class="modal-title game-over-title">⏳ Time's Up!</h2>
+        </div>
+        <div class="modal-body">
+          <p class="game-over-desc">You ran out of time before mapping all target words.</p>
+          <div id="missed-words-container" class="missed-words-box"></div>
+        </div>
+        <div class="modal-footer modal-footer-dual">
+          <button id="game-over-back-btn" class="action-btn secondary-btn modal-hidden">‹ Back to Levels</button>
+          <button id="retry-level-btn" class="action-btn primary-btn">Try Again 🔄</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAND VICTORY MODAL (ALL 20 LEVELS COMPLETED) -->
+    <div id="victory-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog celebration-dialog">
+        <div class="modal-header">
+          <h2 class="modal-title">🏆 GRAND MASTER VICTORY!</h2>
+        </div>
+        <div class="modal-body celebration-body">
+          <p id="victory-subtitle" class="celebration-subtitle">Incredible! You conquered all 20 Levels of Word-Mapping!</p>
+          <div class="reward-box">
+            <span class="reward-icon">⭐</span>
+            <span class="reward-label">Grand Word Master</span>
+          </div>
+          <div class="stats-summary">
+            <div class="stat-item">
+              <span class="stat-name">Grand Score:</span>
+              <span id="victory-final-score" class="stat-number">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-name">Final Coins:</span>
+              <span id="victory-final-coins" class="stat-number">100</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-dual">
+          <button id="victory-level-select-btn" class="action-btn secondary-btn">🗺️ Levels</button>
+          <button id="play-again-btn" class="action-btn primary-btn">Play Again 🔄</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY PUZZLE ACCESS & STREAK MODAL -->
+    <div id="daily-puzzle-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h2 class="modal-title">📅 Daily Puzzle Challenge</h2>
+          <button id="close-daily-btn" class="modal-close-btn" aria-label="Close Daily Modal">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="daily-date-banner" id="daily-today-date">TODAY'S PUZZLE</div>
+          
+          <div class="daily-stats-row">
+            <div class="daily-stat-card">
+              <span class="daily-stat-val" id="daily-streak-val">🔥 0</span>
+              <span class="daily-stat-lbl">Day Streak</span>
+            </div>
+            <div class="daily-stat-card">
+              <span class="daily-stat-val" id="daily-best-streak-val">⭐ 0</span>
+              <span class="daily-stat-lbl">Best Streak</span>
+            </div>
+            <div class="daily-stat-card">
+              <span class="daily-stat-val" id="daily-reward-val">🪙 +25</span>
+              <span class="daily-stat-lbl">Today's Reward</span>
+            </div>
+          </div>
+
+          <!-- Streak Milestone Track -->
+          <div class="streak-track-container">
+            <span class="streak-track-title">Streak Rewards</span>
+            <div class="streak-track-badges">
+              <span class="streak-badge-pill" id="milestone-1">1d (+25🪙)</span>
+              <span class="streak-badge-pill" id="milestone-3">3d (+50🪙)</span>
+              <span class="streak-badge-pill" id="milestone-5">5d (+80🪙)</span>
+              <span class="streak-badge-pill" id="milestone-7">7d+ (+100🪙)</span>
+            </div>
+          </div>
+
+          <div class="daily-status-card" id="daily-status-box">
+            <p id="daily-status-msg">Complete today's puzzle to earn your daily streak bonus!</p>
+            <div id="daily-countdown-wrap" class="daily-countdown-wrap modal-hidden">
+              <span>Next puzzle unlocks in:</span>
+              <strong id="daily-countdown-timer">--:--:--</strong>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-dual">
+          <button id="daily-modal-back-btn" class="action-btn secondary-btn">‹ Back to Levels</button>
+          <button id="start-daily-btn" class="action-btn primary-btn">Play Daily Puzzle ➜</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY PUZZLE VICTORY CELEBRATION MODAL -->
+    <div id="daily-clear-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog celebration-dialog">
+        <div class="modal-header">
+          <h2 class="modal-title">🎉 Daily Puzzle Conquered!</h2>
+        </div>
+        <div class="modal-body celebration-body">
+          <p class="celebration-subtitle">Incredible focus! You mapped all daily target words!</p>
+          <div class="reward-box">
+            <span class="reward-icon">🔥</span>
+            <span class="reward-label" id="daily-clear-streak-msg">Streak: 1 Day!</span>
+            <span id="daily-clear-reward-coins" class="reward-value">+25 Coins</span>
+          </div>
+          <div class="stats-summary">
+            <div class="stat-item">
+              <span class="stat-name">Clear Time:</span>
+              <span id="daily-clear-time-val" class="stat-number">45s</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-name">Daily Score:</span>
+              <span id="daily-clear-score-val" class="stat-number">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-name">Total Coins:</span>
+              <span id="daily-clear-coins-total" class="stat-number">125</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="daily-return-btn" class="action-btn primary-btn">Return to Campaign ➜</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL SELECTION MODAL (BROWSE & REPLAY UNLOCKED LEVELS) -->
+    <div id="level-select-modal" class="modal-backdrop modal-hidden">
+      <div class="modal-dialog level-select-dialog">
+        <div class="modal-header">
+          <div class="level-select-header-title">
+            <h2 class="modal-title">🗺️ Select Level</h2>
+            <span id="level-select-progress-pill" class="level-select-progress-pill">Unlocked: 1/20</span>
+          </div>
+          <button id="close-level-select-btn" class="modal-close-btn" aria-label="Close Level Selection">✕</button>
+        </div>
+        <div class="modal-body level-select-body">
+          <p class="level-select-desc">Browse, replay cleared levels, or continue your journey!</p>
+          <div id="level-grid-container" class="level-grid">
+            <!-- Dynamically populated level cards -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="level-select-resume-btn" class="action-btn primary-btn" style="width: 100%;">
+            Continue Current Level ➜
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Centralized Game Configuration & Economy -->
+  <script src="gameConfig.js"></script>
+
+  <!-- Main Game Engine Logic Script -->
+  <script src="app.js"></script>
+
+  <!-- PWA & Offline Service Worker Registration -->
+  <script>
+    // Register Service Worker for PWA / offline support if running in an HTTP(S) origin and not restricted by sandboxing
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => {
+          // Gracefully ignore registration restrictions when running in sandboxed iframes
+          console.log('PWA Service Worker registration note:', err.message);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
