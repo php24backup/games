@@ -1,0 +1,31 @@
+jobs:
+
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v5
+
+      - name: Sync Branch
+        run: |
+          # sync code to php24backup
+
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v5
+
+      - name: Deploy to InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.INFINITY_FTP_HOST }}
+          username: ${{ secrets.INFINITY_FTP_USERNAME }}
+          password: ${{ secrets.INFINITY_FTP_PASSWORD }}
+          protocol: ftp
+          port: ${{ secrets.INFINITY_FTP_PORT }}
+          server-dir: /htdocs/games/${{ github.ref_name }}/
+          local-dir: ./

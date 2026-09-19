@@ -1,4 +1,4 @@
-name: Sync All Branches to Destination Account
+name: Sync and Deploy All Branches
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '**'
 
 jobs:
-  sync-branch:
+  sync-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,6 +15,7 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Sync branch to destination GitHub repository
       - name: Push Branch with Auto-Retry
         uses: nick-fields/retry@v3
         with:
@@ -34,3 +35,15 @@ jobs:
             git remote add destination "$REMOTE_URL"
 
             git push destination "HEAD:refs/heads/${BRANCH_NAME}" --force
+
+      # # Deploy branch to its own InfinityFree folder
+      # - name: Deploy Branch to InfinityFree
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      #   with:
+      #     server: ${{ secrets.INFINITY_FTP_HOST }}
+      #     username: ${{ secrets.INFINITY_FTP_USERNAME }}
+      #     password: ${{ secrets.INFINITY_FTP_PASSWORD }}
+      #     protocol: ftp
+      #     port: ${{ secrets.INFINITY_FTP_PORT }}
+      #     server-dir: /htdocs/games/${{ github.ref_name }}/
+      #     local-dir: ./
