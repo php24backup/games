@@ -35,7 +35,7 @@ jobs:
             # Ensure default repository token extraheader does not override destination credentials
             git config --local --unset-all http.https://github.com/.extraheader 2>/dev/null || true
 
-            REMOTE_URL="https://x-access-token:${DESTINATION_GITHUB_TOKEN:-${{ secrets.DESTINATION_GITHUB_TOKEN }}}@github.com/${DEST_OWNER}/${DEST_REPO}.git"
+            REMOTE_URL="https://x-access-token:${DESTINATION_GITHUB_TOKEN}@github.com/${DEST_OWNER}/${DEST_REPO}.git"
 
             git remote remove destination 2>/dev/null || true
             git remote add destination "$REMOTE_URL"
