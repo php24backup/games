@@ -16,15 +16,61 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      # Pre-flight diagnostic (safe, never prints token)
+      - name: Verify Destination Access (Safe Diagnostic)
+        env:
+          DESTINATION_GITHUB_TOKEN: ${{ secrets.DESTINATION_GITHUB_TOKEN }}
+        run: |
+          if [ -z "$DESTINATION_GITHUB_TOKEN" ]; then
+            echo "::error::DESTINATION_GITHUB_TOKEN secret is empty or not set!"
+            exit 1
+          fi
+
+          echo "DESTINATION_GITHUB_TOKEN secret is present (length: ${#DESTINATION_GITHUB_TOKEN} characters)."
+
+          USER_RESP=$(curl -s -w "\n%{http_code}" \
+            -H "Authorization: Bearer $DESTINATION_GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/user)
+          HTTP_STATUS=$(echo "$USER_RESP" | tail -n1)
+          BODY=$(echo "$USER_RESP" | sed '$d')
+
+          if [ "$HTTP_STATUS" = "200" ]; then
+            AUTH_LOGIN=$(echo "$BODY" | grep -o '"login": *"[^"]*"' | head -1 | cut -d'"' -f4)
+            echo "Authenticated token identity: $AUTH_LOGIN"
+          else
+            echo "::warning::GitHub API /user returned HTTP $HTTP_STATUS"
+          fi
+
+          # Check scopes (for Classic PAT)
+          SCOPES=$(curl -s -I -H "Authorization: Bearer $DESTINATION_GITHUB_TOKEN" https://api.github.com/user | grep -i '^x-oauth-scopes:' | tr -d '\r')
+          if [ -n "$SCOPES" ]; then
+            echo "$SCOPES"
+            if echo "$SCOPES" | grep -q 'workflow'; then
+              echo "Token has 'workflow' scope."
+            else
+              echo "::error::Token is MISSING 'workflow' scope! Pushing branches that include .github/workflows/ will be rejected by GitHub."
+            fi
+          else
+            echo "No x-oauth-scopes header returned (Fine-Grained PAT in use). Ensure 'Workflows: Read and write' permission is granted."
+          fi
+
+          # Verify write permission on destination repository
+          REPO_RESP=$(curl -s -H "Authorization: Bearer $DESTINATION_GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/php24backup/games)
+          PUSH_PERM=$(echo "$REPO_RESP" | grep -o '"push": *[a-z]*' | head -1)
+          echo "Destination repo permission: $PUSH_PERM"
+
       # Sync branch to destination GitHub repository
       - name: Push Branch with Auto-Retry
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         env:
           DESTINATION_GITHUB_TOKEN: ${{ secrets.DESTINATION_GITHUB_TOKEN }}
         with:
-          timeout_minutes: 5
+          timeout_minutes: 3
           max_attempts: 3
-          retry_wait_seconds: 300
+          retry_wait_seconds: 15
 
           command: |
             DEST_OWNER="php24backup"
