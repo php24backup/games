@@ -14,10 +14,13 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       # Sync branch to destination GitHub repository
       - name: Push Branch with Auto-Retry
         uses: nick-fields/retry@v3
+        env:
+          DESTINATION_GITHUB_TOKEN: ${{ secrets.DESTINATION_GITHUB_TOKEN }}
         with:
           timeout_minutes: 5
           max_attempts: 3
@@ -29,7 +32,10 @@ jobs:
 
             BRANCH_NAME="${GITHUB_REF#refs/heads/}"
 
-            REMOTE_URL="https://x-access-token:${{ secrets.DESTINATION_GITHUB_TOKEN }}@github.com/${DEST_OWNER}/${DEST_REPO}.git"
+            # Ensure default repository token extraheader does not override destination credentials
+            git config --local --unset-all http.https://github.com/.extraheader 2>/dev/null || true
+
+            REMOTE_URL="https://x-access-token:${DESTINATION_GITHUB_TOKEN:-${{ secrets.DESTINATION_GITHUB_TOKEN }}}@github.com/${DEST_OWNER}/${DEST_REPO}.git"
 
             git remote remove destination 2>/dev/null || true
             git remote add destination "$REMOTE_URL"
