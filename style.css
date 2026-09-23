@@ -859,14 +859,134 @@ html, body {
 }
 
 /* --- Celebration Modals (Level Clear & Grand Victory) --- */
+.celebration-dialog {
+  max-width: 440px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(20, 26, 52, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 24px rgba(0, 210, 255, 0.18);
+}
+
 .celebration-body {
   text-align: center;
   align-items: center;
+  overflow-y: auto;
+  max-height: calc(92vh - 120px);
+  padding: 14px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 210, 255, 0.3) transparent;
+}
+
+.celebration-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.celebration-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 210, 255, 0.3);
+  border-radius: var(--radius-full);
 }
 
 .celebration-subtitle {
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+/* --- Level Cleared Targeted Words Summary Section --- */
+.summary-words-section {
+  width: 100%;
+  margin-top: 8px;
+  background: rgba(10, 14, 30, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-words-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.summary-words-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+}
+
+.summary-words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  justify-content: center;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 4px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 210, 255, 0.3) transparent;
+}
+
+.summary-words-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.summary-words-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 210, 255, 0.3);
+  border-radius: var(--radius-full);
+}
+
+.summary-word-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(18, 25, 48, 0.75);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  min-height: 28px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 0 6px rgba(0, 210, 255, 0.1);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.summary-word-card:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 2px 8px rgba(0, 210, 255, 0.25);
+}
+
+.summary-word-card .target-word-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.summary-word-card .translate-btn {
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 800;
+  min-height: 22px;
+}
+
+.summary-word-card .translation-result {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  background: rgba(246, 195, 67, 0.12);
+  border: 1px solid rgba(246, 195, 67, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
 }
 
 .reward-box {

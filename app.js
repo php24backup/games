@@ -5871,6 +5871,8 @@ class WordMappingGame {
       clearTimeVal: document.getElementById('clear-time-val'),
       clearScoreVal: document.getElementById('clear-score-val'),
       clearCoinsTotal: document.getElementById('clear-coins-total'),
+      levelClearWordsList: document.getElementById('level-clear-words-list'),
+      levelClearWordsCount: document.getElementById('level-clear-words-count'),
       nextLevelBtn: document.getElementById('next-level-btn'),
       gameOverModal: document.getElementById('game-over-modal'),
       retryLevelBtn: document.getElementById('retry-level-btn'),
@@ -6756,6 +6758,9 @@ class WordMappingGame {
     if (this.dom.hintCostBadge) {
       this.dom.hintCostBadge.textContent = `${this.hintCost}🪙`;
     }
+    if (this.dom.clearCoinsTotal) {
+      this.dom.clearCoinsTotal.textContent = this.coins.toString();
+    }
   }
 
   addCoins(amount, reason = '') {
@@ -7057,6 +7062,7 @@ class WordMappingGame {
     this.closeSettingsModal();
     this.showToast(`Language: ${this.selectedLanguage.toUpperCase()}`);
     this.renderTargetWordsList();
+    this.renderSummaryTargetWordsList();
     // Persist settings preferences across platform sessions
     this.saveGameState();
   }
@@ -7268,6 +7274,7 @@ class WordMappingGame {
       this.dom.clearScoreVal.textContent = levelScore.toLocaleString();
     }
     this.dom.clearCoinsTotal.textContent = this.coins.toString();
+    this.renderSummaryTargetWordsList();
 
     this.soundEngine.playWordSuccess();
     this.dom.levelClearModal.classList.remove('modal-hidden');
@@ -7370,8 +7377,60 @@ class WordMappingGame {
       // Example: cat = billi (in hindi)
       const formattedTranslation = `${word.toLowerCase()} = ${translatedWord} (in ${this.selectedLanguage})`;
       this.renderTargetWordsList();
+      this.renderSummaryTargetWordsList();
       this.showToast(`Unlocked: ${formattedTranslation}`, 'success');
     }
+  }
+
+  /* --------------------------------------------------------------------------
+   * Summary Modal Target Words List Rendering
+   * -------------------------------------------------------------------------- */
+  renderSummaryTargetWordsList() {
+    if (!this.dom.levelClearWordsList) return;
+    this.dom.levelClearWordsList.textContent = '';
+    const words = (this.currentLevelData && Array.isArray(this.currentLevelData.words))
+      ? this.currentLevelData.words
+      : [];
+
+    if (this.dom.levelClearWordsCount) {
+      this.dom.levelClearWordsCount.textContent = words.length.toString();
+    }
+
+    const cost = (typeof GAME_CONFIG !== 'undefined' && Number.isInteger(GAME_CONFIG.TRANSLATION_COST))
+      ? GAME_CONFIG.TRANSLATION_COST
+      : 5;
+
+    words.forEach(word => {
+      const card = document.createElement('div');
+      card.className = 'word-card discovered summary-word-card';
+      card.id = `summary-word-${word}`;
+
+      if (this.translatedWords.has(word)) {
+        const translations = this.currentLevelData.translations && this.currentLevelData.translations[word];
+        const translatedWord = (translations && translations[this.selectedLanguage]) || word.toLowerCase();
+        const transSpan = document.createElement('span');
+        transSpan.className = 'translation-result';
+        transSpan.textContent = `${word.toLowerCase()} = ${translatedWord} (in ${this.selectedLanguage})`;
+        card.appendChild(transSpan);
+      } else {
+        const wordText = document.createElement('span');
+        wordText.className = 'target-word-label';
+        wordText.textContent = word;
+        card.appendChild(wordText);
+
+        const translateBtn = document.createElement('button');
+        translateBtn.className = 'translate-btn';
+        translateBtn.textContent = `🌐 Translate (${cost}🪙)`;
+        translateBtn.title = `Translate for ${cost} coins`;
+        translateBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.handleTranslateClick(word, cost);
+        });
+        card.appendChild(translateBtn);
+      }
+
+      this.dom.levelClearWordsList.appendChild(card);
+    });
   }
 
   /* --------------------------------------------------------------------------
