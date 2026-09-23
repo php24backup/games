@@ -11,8 +11,8 @@
     // ==========================================
     // 1. Starting Economy
     // ==========================================
-    // Starting balance for new players (Default: 100 as per GDD)
-    INITIAL_COINS: 100,
+    // Starting balance for new players (Default: 10)
+    INITIAL_COINS: 10,
 
     // ==========================================
     // 2. Feature Transaction Costs

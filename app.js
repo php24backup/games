@@ -6783,7 +6783,7 @@ class WordMappingGame {
   get initialCoins() {
     return (typeof GAME_CONFIG !== 'undefined' && Number.isInteger(GAME_CONFIG.INITIAL_COINS))
       ? GAME_CONFIG.INITIAL_COINS
-      : 100;
+      : 10;
   }
 
   get translationCost() {
