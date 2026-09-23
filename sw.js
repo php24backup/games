@@ -8,13 +8,14 @@
  * ============================================================================
  */
 
-const CACHE_NAME = 'word-mapping-v1.2.0';
+const CACHE_NAME = 'word-mapping-v1.3.4';
 
 // Core local assets required for full offline playability
 const PRECACHE_ASSETS = [
   './',
   'index.html',
   'style.css',
+  'audio.js',
   'app.js',
   'manifest.json',
   'icon.svg'

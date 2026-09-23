@@ -5558,9 +5558,213 @@ class SoundEngine {
     } catch (e) {}
   }
 
+  /**
+   * Dedicated Procedural Audio Effect for Translation Completion
+   * Crisp, magical ascending harp/chime sweep with two chained sine-wave oscillators
+   * modulating smoothly: 523.25Hz (C5) -> 659.25Hz (E5) -> 783.99Hz (G5)
+   * with light gain envelope decay and soft resonance filter (BiquadFilter with Q resonance).
+   */
+  playTranslateChime() {
+    if (!this.enabled) return;
+    this.init();
+    if (!this.ctx) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const duration = 0.55;
+
+      // Resonant BiquadFilter with Q resonance for soft acoustic shimmer
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(1400, now);
+      filter.frequency.exponentialRampToValueAtTime(3600, now + 0.22);
+      filter.frequency.exponentialRampToValueAtTime(1200, now + duration);
+      filter.Q.setValueAtTime(3.5, now);
+
+      // Light gain envelope decay
+      const masterGain = this.ctx.createGain();
+      masterGain.gain.setValueAtTime(0.0001, now);
+      masterGain.gain.linearRampToValueAtTime(0.24, now + 0.035);
+      masterGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      // Chained sine-wave oscillator 1: 523.25Hz (C5) -> 659.25Hz (E5) -> 783.99Hz (G5)
+      const osc1 = this.ctx.createOscillator();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(523.25, now);
+      osc1.frequency.exponentialRampToValueAtTime(659.25, now + 0.12);
+      osc1.frequency.exponentialRampToValueAtTime(783.99, now + 0.26);
+
+      // Chained sine-wave oscillator 2: chained harmonic overtone sweep
+      const osc2 = this.ctx.createOscillator();
+      const osc2Gain = this.ctx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(523.25 * 2, now + 0.04);
+      osc2.frequency.exponentialRampToValueAtTime(659.25 * 2, now + 0.15);
+      osc2.frequency.exponentialRampToValueAtTime(783.99 * 2, now + 0.30);
+
+      osc2Gain.gain.setValueAtTime(0.0001, now);
+      osc2Gain.gain.linearRampToValueAtTime(0.12, now + 0.05);
+      osc2Gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      // Connect nodes
+      osc1.connect(filter);
+      osc2.connect(osc2Gain);
+      osc2Gain.connect(filter);
+      filter.connect(masterGain);
+      masterGain.connect(this.ctx.destination);
+
+      osc1.start(now);
+      osc1.stop(now + duration);
+      osc2.start(now);
+      osc2.stop(now + duration);
+    } catch (e) {}
+  }
+
+  playTranslationSound() {
+    return this.playTranslateChime();
+  }
+
   setMuted(muted) {
     this.enabled = !muted;
   }
+}
+
+if (typeof window !== 'undefined' && !window.SoundEngine) {
+  window.SoundEngine = SoundEngine;
+}
+
+/* ============================================================================
+ * 3.5. DYNAMIC LEVEL PALETTES & WCAG HIGH-CONTRAST ENGINE
+ * ============================================================================
+ * Curated dynamic background color themes cycling/randomizing per level.
+ * Guarantees WCAG 2.1 contrast compliance (>= 4.5:1 AA, aiming for > 7:1 AAA)
+ * between tile letters / target words and their respective background colors.
+ */
+const GAME_THEME_PALETTES = [
+  {
+    name: 'Deep Midnight',
+    bgPrimary: '#0e1326',
+    bgSecondary: '#161d3b',
+    bgCard: '#1f294f',
+    bgRadialTop: '#1b2552',
+    tileBg: '#232f59',
+    preferredTileText: '#ffffff',
+    preferredWordText: '#fef3c7'
+  },
+  {
+    name: 'Dark Amethyst',
+    bgPrimary: '#170c24',
+    bgSecondary: '#25133a',
+    bgCard: '#341a52',
+    bgRadialTop: '#3d1d60',
+    tileBg: '#3a1f5a',
+    preferredTileText: '#fef3c7',
+    preferredWordText: '#fde047'
+  },
+  {
+    name: 'Galactic Teal',
+    bgPrimary: '#071c21',
+    bgSecondary: '#0c2e36',
+    bgCard: '#14424e',
+    bgRadialTop: '#16505f',
+    tileBg: '#154b58',
+    preferredTileText: '#fde047',
+    preferredWordText: '#fef3c7'
+  },
+  {
+    name: 'Dark Crimson',
+    bgPrimary: '#220b13',
+    bgSecondary: '#351220',
+    bgCard: '#49192c',
+    bgRadialTop: '#571c33',
+    tileBg: '#4f1d32',
+    preferredTileText: '#fef3c7',
+    preferredWordText: '#fde047'
+  },
+  {
+    name: 'Obsidian Emerald',
+    bgPrimary: '#081e15',
+    bgSecondary: '#0e3022',
+    bgCard: '#154531',
+    bgRadialTop: '#19543c',
+    tileBg: '#174e37',
+    preferredTileText: '#fef3c7',
+    preferredWordText: '#fde047'
+  },
+  {
+    name: 'Cosmic Indigo',
+    bgPrimary: '#120f2e',
+    bgSecondary: '#1d1948',
+    bgCard: '#2b2569',
+    bgRadialTop: '#342c7e',
+    tileBg: '#2e276f',
+    preferredTileText: '#ffffff',
+    preferredWordText: '#fef3c7'
+  }
+];
+
+function parseHexColor(hex) {
+  let c = hex.replace('#', '').trim();
+  if (c.length === 3) {
+    c = c.split('').map(ch => ch + ch).join('');
+  }
+  const num = parseInt(c, 16);
+  return {
+    r: (num >> 16) & 255,
+    g: (num >> 8) & 255,
+    b: num & 255
+  };
+}
+
+/**
+ * Calculates standard WCAG 2.1 relative luminance for a given sRGB hex color.
+ */
+function getRelativeLuminance(hex) {
+  const { r, g, b } = parseHexColor(hex);
+  const [sR, sG, sB] = [r, g, b].map(val => {
+    const s = val / 255;
+    return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * sR + 0.7152 * sG + 0.0722 * sB;
+}
+
+/**
+ * Calculates standard WCAG contrast ratio between foreground and background colors.
+ */
+function getContrastRatio(hexForeground, hexBackground) {
+  const lum1 = getRelativeLuminance(hexForeground);
+  const lum2 = getRelativeLuminance(hexBackground);
+  const brightest = Math.max(lum1, lum2);
+  const darkest = Math.min(lum1, lum2);
+  return (brightest + 0.05) / (darkest + 0.05);
+}
+
+/**
+ * Dynamic letter contrast safeguard:
+ * Guarantees contrast ratio >= 4.5:1 (WCAG AA) and aims for > 7:1 (WCAG AAA)
+ * between tile letters / target words and their backgrounds.
+ * Uses glowing cream #fef3c7, electric gold #fde047, bright cyan #38bdf8, or high-contrast white #ffffff.
+ */
+function getContrastSafeTextColor(preferredColor, backgroundColor, minRatio = 4.5) {
+  const SAFE_CANDIDATES = ['#ffffff', '#fef3c7', '#fde047', '#38bdf8'];
+
+  if (preferredColor) {
+    const ratio = getContrastRatio(preferredColor, backgroundColor);
+    if (ratio >= 7.0 || (ratio >= minRatio && minRatio <= 4.5)) {
+      return preferredColor;
+    }
+  }
+
+  let bestCandidate = SAFE_CANDIDATES[0];
+  let maxRatio = 0;
+  for (const candidate of SAFE_CANDIDATES) {
+    const ratio = getContrastRatio(candidate, backgroundColor);
+    if (ratio > maxRatio) {
+      maxRatio = ratio;
+      bestCandidate = candidate;
+    }
+  }
+  return bestCandidate;
 }
 
 /* ============================================================================
@@ -5578,6 +5782,9 @@ class WordMappingGame {
     this.bonusWordsFound = new Set(); // Session bonus words tracker
     this.totalScore = 0;             // Cumulative performance score across levels
     this.firstFrameReported = false; // YouTube Playables first frame lifecycle flag
+
+    // --- Dynamic Level Palette & High-Contrast Theme State ---
+    this.currentThemePalette = null;
 
     // --- Progression State (20-Level Structured Progression & Level Selection) ---
     this.currentLevelIndex = 0;
@@ -6909,9 +7116,54 @@ class WordMappingGame {
   /* --------------------------------------------------------------------------
    * Level Management & Win State Flow
    * -------------------------------------------------------------------------- */
+  /**
+   * Applies dynamic level background themes and WCAG contrast-safe text colors.
+   * Cycles or selects the palette per level, updates CSS variables on #game-app &
+   * document.documentElement (--bg-primary, --bg-secondary, --bg-card, --bg-radial-top,
+   * --target-word-text, --tile-text), and caches this.currentThemePalette.
+   */
+  applyThemePalette(levelIndex = 0) {
+    const safeIndex = (typeof levelIndex === 'number' && !isNaN(levelIndex))
+      ? Math.abs(Math.floor(levelIndex))
+      : 0;
+    const paletteIndex = safeIndex % GAME_THEME_PALETTES.length;
+    const basePalette = GAME_THEME_PALETTES[paletteIndex];
+
+    const tileTextColor = getContrastSafeTextColor(basePalette.preferredTileText, basePalette.tileBg, 4.5);
+    const targetWordTextColor = getContrastSafeTextColor(basePalette.preferredWordText, basePalette.bgCard, 4.5);
+
+    this.currentThemePalette = {
+      ...basePalette,
+      tileTextColor,
+      targetWordTextColor
+    };
+
+    const rootEl = (typeof document !== 'undefined' && document.documentElement) ? document.documentElement : null;
+    const appEl = (typeof document !== 'undefined' && document.getElementById('game-app')) || rootEl;
+
+    if (rootEl && appEl) {
+      const properties = {
+        '--bg-primary': this.currentThemePalette.bgPrimary,
+        '--bg-secondary': this.currentThemePalette.bgSecondary,
+        '--bg-card': this.currentThemePalette.bgCard,
+        '--bg-radial-top': this.currentThemePalette.bgRadialTop,
+        '--target-word-text': this.currentThemePalette.targetWordTextColor,
+        '--tile-text': this.currentThemePalette.tileTextColor
+      };
+
+      Object.entries(properties).forEach(([prop, val]) => {
+        appEl.style.setProperty(prop, val);
+        rootEl.style.setProperty(prop, val);
+      });
+    }
+
+    return this.currentThemePalette;
+  }
+
   loadLevel(levelIndex) {
     this.isDailyMode = false;
     this.currentLevelIndex = levelIndex;
+    this.applyThemePalette(levelIndex);
     this.maxUnlockedLevel = Math.max(this.maxUnlockedLevel, this.currentLevelIndex);
     
     // Select globally unique words for this level, strictly excluding any used words
@@ -7074,6 +7326,7 @@ class WordMappingGame {
           card.appendChild(transSpan);
         } else {
           const wordText = document.createElement('span');
+          wordText.className = 'target-word-label';
           wordText.textContent = word;
           card.appendChild(wordText);
 
@@ -7105,6 +7358,7 @@ class WordMappingGame {
       ? cost
       : ((typeof GAME_CONFIG !== 'undefined' && Number.isInteger(GAME_CONFIG.TRANSLATION_COST)) ? GAME_CONFIG.TRANSLATION_COST : 5);
     if (this.deductCoins(translationCost)) {
+      this.soundEngine.playTranslationSound();
       this.translatedWords.add(word);
       const translations = this.currentLevelData.translations[word];
       const translatedWord = (translations && translations[this.selectedLanguage]) || word.toLowerCase();
@@ -7347,6 +7601,9 @@ class WordMappingGame {
     const ctx = this.ctx;
     const { x, y, size, char } = tile;
     const radius = Math.min(14, size * 0.25);
+    const theme = this.currentThemePalette;
+    const idleTileBg = (theme && theme.tileBg) || '#232a4d';
+    const idleTileTextColor = (theme && theme.tileTextColor) || '#f8fafc';
 
     ctx.save();
 
@@ -7389,7 +7646,7 @@ class WordMappingGame {
       ctx.shadowBlur = 6;
       ctx.shadowOffsetY = 3;
 
-      ctx.fillStyle = '#232a4d';
+      ctx.fillStyle = idleTileBg;
       this.roundRect(ctx, x, y, size, size, radius);
       ctx.fill();
 
@@ -7398,11 +7655,11 @@ class WordMappingGame {
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
       ctx.stroke();
 
-      ctx.fillStyle = '#f8fafc';
+      ctx.fillStyle = idleTileTextColor;
     }
 
-    // Letter Glyph
-    ctx.font = `bold ${Math.round(size * 0.46)}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+    // Letter Glyph (+17% font size boost for prominent readability)
+    ctx.font = `bold ${Math.round(size * 0.54)}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(char, tile.centerX, tile.centerY);
@@ -7817,7 +8074,7 @@ class WordMappingGame {
   /**
    * Starts playing today's date-seeded Daily Puzzle challenge.
    */
-  startDailyChallenge() {
+  startDailyChallenge(levelIndex) {
     this.soundEngine.playClick();
     this.dom.dailyPuzzleModal.classList.add('modal-hidden');
     if (this.dailyCountdownInterval) {
@@ -7841,6 +8098,11 @@ class WordMappingGame {
     this.foundWords.clear();
     this.translatedWords.clear();
     this.clearHint();
+
+    const dailySeed = (typeof levelIndex === 'number' && !isNaN(levelIndex))
+      ? levelIndex
+      : todayKey.split('-').reduce((acc, num) => acc + (parseInt(num, 10) || 0), 0);
+    this.applyThemePalette(dailySeed);
 
     // Update Header Level Indicator to Daily Mode
     this.dom.levelNumber.textContent = '📅';
@@ -8030,11 +8292,28 @@ class WordMappingGame {
   }
 }
 
-// Instantiate engine when DOM is ready
-if (document.readyState === 'loading') {
-  window.addEventListener('DOMContentLoaded', () => {
+// Instantiate engine when DOM is ready in browser environment
+if (typeof window !== 'undefined' && typeof document !== 'undefined' && typeof process === 'undefined') {
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', () => {
+      window.wordMappingGame = new WordMappingGame();
+    });
+  } else {
     window.wordMappingGame = new WordMappingGame();
-  });
-} else {
-  window.wordMappingGame = new WordMappingGame();
+  }
 }
+
+// CommonJS module export for Node.js test environment
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    GAME_THEME_PALETTES,
+    GAME_LEVELS,
+    parseHexColor,
+    getRelativeLuminance,
+    getContrastRatio,
+    getContrastSafeTextColor,
+    SoundEngine,
+    WordMappingGame
+  };
+}
+

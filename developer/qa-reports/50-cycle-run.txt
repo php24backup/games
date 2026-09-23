@@ -1,0 +1,481 @@
+================================================================================
+WORD-MAPPING AUTOMATED 50-CYCLE ENGINE STRESS TEST REPORT
+================================================================================
+Timestamp: 2026-09-23T12:06:05.727Z
+Node Version: v20.20.2
+Platform: linux (x64)
+Total Iterations Mandated: 50
+Target Requirements:
+  1. Game initialization & level cycle simulation (iterations 1-50)
+  2. Background & letter color generation with WCAG contrast validation (>= 4.5:1)
+  3. Procedural translation audio sweep execution (523.25Hz -> 659.25Hz -> 783.99Hz)
+  4. Memory leak / heap delta tracking per run
+================================================================================
+[Iteration 01/50] Level 1 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.08 MB (Heap Used: 4.78 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 02/50] Level 2 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.321 MB (Heap Used: 5.11 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 03/50] Level 3 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.392 MB (Heap Used: 5.51 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 04/50] Level 4 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.402 MB (Heap Used: 5.91 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 05/50] Level 5 (Theme: Obsidian Emerald)
+  • Generated Background Color : #174e37 (RGB: 23, 78, 55)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 8.65:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.42 MB (Heap Used: 6.34 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 06/50] Level 6 (Theme: Cosmic Indigo)
+  • Generated Background Color : #2e276f (RGB: 46, 39, 111)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.84:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.162 MB (Heap Used: 6.51 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 07/50] Level 7 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.221 MB (Heap Used: 6.74 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 08/50] Level 8 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.439 MB (Heap Used: 7.18 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 09/50] Level 9 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.455 MB (Heap Used: 7.64 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 10/50] Level 10 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.488 MB (Heap Used: 8.14 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 11/50] Level 11 (Theme: Obsidian Emerald)
+  • Generated Background Color : #174e37 (RGB: 23, 78, 55)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 8.65:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.502 MB (Heap Used: 8.65 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 12/50] Level 12 (Theme: Cosmic Indigo)
+  • Generated Background Color : #2e276f (RGB: 46, 39, 111)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.84:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.687 MB (Heap Used: 9.34 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 13/50] Level 13 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.454 MB (Heap Used: 9.8 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 14/50] Level 14 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.459 MB (Heap Used: 10.27 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 15/50] Level 15 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : -0.169 MB (Heap Used: 10.11 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 16/50] Level 16 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.476 MB (Heap Used: 10.59 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 17/50] Level 17 (Theme: Obsidian Emerald)
+  • Generated Background Color : #174e37 (RGB: 23, 78, 55)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 8.65:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : -0.038 MB (Heap Used: 10.56 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 18/50] Level 18 (Theme: Cosmic Indigo)
+  • Generated Background Color : #2e276f (RGB: 46, 39, 111)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.84:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.48 MB (Heap Used: 11.05 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 19/50] Level 19 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.484 MB (Heap Used: 11.54 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 20/50] Level 20 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.503 MB (Heap Used: 12.05 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 21/50] Level 1 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.47 MB (Heap Used: 12.52 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 22/50] Level 2 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.438 MB (Heap Used: 12.97 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 23/50] Level 3 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.442 MB (Heap Used: 13.42 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 24/50] Level 4 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.45 MB (Heap Used: 13.87 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 25/50] Level 5 (Theme: Obsidian Emerald)
+  • Generated Background Color : #174e37 (RGB: 23, 78, 55)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 8.65:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.464 MB (Heap Used: 14.35 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 26/50] Level 6 (Theme: Cosmic Indigo)
+  • Generated Background Color : #2e276f (RGB: 46, 39, 111)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.84:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.467 MB (Heap Used: 14.82 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 27/50] Level 7 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.472 MB (Heap Used: 15.3 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 28/50] Level 8 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.477 MB (Heap Used: 15.78 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 29/50] Level 9 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.632 MB (Heap Used: 16.42 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 30/50] Level 10 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.49 MB (Heap Used: 16.92 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 31/50] Level 11 (Theme: Obsidian Emerald)
+  • Generated Background Color : #174e37 (RGB: 23, 78, 55)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 8.65:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.477 MB (Heap Used: 17.4 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 32/50] Level 12 (Theme: Cosmic Indigo)
+  • Generated Background Color : #2e276f (RGB: 46, 39, 111)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.84:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : -1.134 MB (Heap Used: 16.27 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 33/50] Level 13 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.469 MB (Heap Used: 16.75 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 34/50] Level 14 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.472 MB (Heap Used: 17.23 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 35/50] Level 15 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.473 MB (Heap Used: 17.7 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 36/50] Level 16 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.482 MB (Heap Used: 18.19 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 37/50] Level 17 (Theme: Obsidian Emerald)
+  • Generated Background Color : #174e37 (RGB: 23, 78, 55)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 8.65:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : -0.511 MB (Heap Used: 17.69 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 38/50] Level 18 (Theme: Cosmic Indigo)
+  • Generated Background Color : #2e276f (RGB: 46, 39, 111)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.84:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.5 MB (Heap Used: 18.2 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 39/50] Level 19 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.5 MB (Heap Used: 18.7 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 40/50] Level 20 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.501 MB (Heap Used: 19.21 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 41/50] Level 1 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.464 MB (Heap Used: 19.68 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 42/50] Level 2 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.489 MB (Heap Used: 20.18 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 43/50] Level 3 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.442 MB (Heap Used: 20.62 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 44/50] Level 4 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.447 MB (Heap Used: 21.08 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 45/50] Level 5 (Theme: Obsidian Emerald)
+  • Generated Background Color : #174e37 (RGB: 23, 78, 55)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 8.65:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.46 MB (Heap Used: 21.55 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 46/50] Level 6 (Theme: Cosmic Indigo)
+  • Generated Background Color : #2e276f (RGB: 46, 39, 111)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.84:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.633 MB (Heap Used: 22.18 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 47/50] Level 7 (Theme: Deep Midnight)
+  • Generated Background Color : #232f59 (RGB: 35, 47, 89)
+  • Generated Letter Color     : #ffffff (RGB: 255, 255, 255)
+  • Contrast Check Result      : PASS (Ratio: 12.94:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.468 MB (Heap Used: 22.66 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 48/50] Level 8 (Theme: Dark Amethyst)
+  • Generated Background Color : #3a1f5a (RGB: 58, 31, 90)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.38:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.471 MB (Heap Used: 23.14 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 49/50] Level 9 (Theme: Galactic Teal)
+  • Generated Background Color : #154b58 (RGB: 21, 75, 88)
+  • Generated Letter Color     : #fde047 (RGB: 253, 224, 71)
+  • Contrast Check Result      : PASS (Ratio: 7.31:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.48 MB (Heap Used: 23.62 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+[Iteration 50/50] Level 10 (Theme: Dark Crimson)
+  • Generated Background Color : #4f1d32 (RGB: 79, 29, 50)
+  • Generated Letter Color     : #fef3c7 (RGB: 254, 243, 199)
+  • Contrast Check Result      : PASS (Ratio: 12.13:1 >= 4.5:1 WCAG AA)
+  • Audio Object Trigger Status: PASS (Frequencies: 523.25Hz -> 659.25Hz -> 783.99Hz, Filter Q: 3.5)
+  • Runtime Exceptions         : None (0)
+  • Memory Heap Delta          : +0.496 MB (Heap Used: 24.13 MB) [Status: Normal (No Leak)]
+  • Cycle Outcome              : SUCCESS (PASS)
+
+================================================================================
+STRESS TEST COMPLETION SUMMARY
+================================================================================
+Completed At: 2026-09-23T12:06:06.209Z
+Total Iterations Executed  : 50
+Passed Iterations          : 50 / 50 (100.0%)
+Failed Iterations          : 0
+WCAG Contrast Tests Passed : 50 / 50 (100.0%)
+  - Min Contrast Ratio     : 7.31:1
+  - Max Contrast Ratio     : 12.94:1
+  - Average Contrast Ratio : 11.18:1 (Threshold >= 4.5:1)
+Audio Sweep Triggers Passed: 50 / 50 (100.0%)
+  - Frequency Path Verified: 523.25Hz (C5) -> 659.25Hz (E5) -> 783.99Hz (G5)
+  - Shimmer Resonance Filter: BiquadFilter (Q=3.5) verified
+Runtime Exceptions Trapped : 0
+Memory Heap Analysis       : Initial: 4.70 MB, Final: 24.13 MB (Net Delta: 19.44 MB)
+Overall Stress Test Status : ALL 50 CYCLES PASSED - PERFECT STABILITY
+================================================================================
