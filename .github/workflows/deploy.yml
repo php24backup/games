@@ -1,0 +1,48 @@
+name: Deploy Branch to InfinityFree
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v5
+
+      # Pre-flight check to verify required secrets exist
+      - name: Validate FTP Secrets
+        env:
+          FTP_HOST: ${{ secrets.INFINITY_FTP_HOST }}
+          FTP_USER: ${{ secrets.INFINITY_FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.INFINITY_FTP_PASSWORD }}
+        run: |
+          MISSING=""
+          [ -z "$FTP_HOST" ] && MISSING="$MISSING INFINITY_FTP_HOST"
+          [ -z "$FTP_USER" ] && MISSING="$MISSING INFINITY_FTP_USERNAME"
+          [ -z "$FTP_PASS" ] && MISSING="$MISSING INFINITY_FTP_PASSWORD"
+          if [ -n "$MISSING" ]; then
+            echo "::error::Missing required GitHub repository secret(s):$MISSING"
+            echo "Please add them in Repository Settings -> Secrets and variables -> Actions"
+            exit 1
+          fi
+          echo "All required FTP secrets are present."
+
+      - name: Deploy to InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.INFINITY_FTP_HOST }}
+          username: ${{ secrets.INFINITY_FTP_USERNAME }}
+          password: ${{ secrets.INFINITY_FTP_PASSWORD }}
+          protocol: ftp
+          port: ${{ secrets.INFINITY_FTP_PORT || 21 }}
+          server-dir: /htdocs/games/${{ github.ref_name }}/
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
