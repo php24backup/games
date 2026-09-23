@@ -5873,6 +5873,7 @@ class WordMappingGame {
       clearCoinsTotal: document.getElementById('clear-coins-total'),
       levelClearWordsList: document.getElementById('level-clear-words-list'),
       levelClearWordsCount: document.getElementById('level-clear-words-count'),
+      levelClearWatchAdBtn: document.getElementById('level-clear-watch-ad-btn'),
       nextLevelBtn: document.getElementById('next-level-btn'),
       gameOverModal: document.getElementById('game-over-modal'),
       retryLevelBtn: document.getElementById('retry-level-btn'),
@@ -6296,11 +6297,21 @@ class WordMappingGame {
       });
     }
 
-    // Watch Video (Simulated Rewarded Ad) Button
-    this.dom.watchAdBtn.addEventListener('click', () => {
-      this.soundEngine.playClick();
-      this.startWatchAdFlow();
-    });
+    // Watch Video (Simulated Rewarded Ad) Button - HUD
+    if (this.dom.watchAdBtn) {
+      this.dom.watchAdBtn.addEventListener('click', () => {
+        this.soundEngine.playClick();
+        this.startWatchAdFlow();
+      });
+    }
+
+    // Watch Video Button - Level Cleared Summary Modal
+    if (this.dom.levelClearWatchAdBtn) {
+      this.dom.levelClearWatchAdBtn.addEventListener('click', () => {
+        this.soundEngine.playClick();
+        this.startWatchAdFlow();
+      });
+    }
 
     // Settings Modal Open / Close
     this.dom.settingsBtn.addEventListener('click', () => {

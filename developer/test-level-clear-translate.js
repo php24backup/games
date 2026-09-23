@@ -186,8 +186,101 @@ async function runTests() {
   }
   console.log('✓ TEST 5 PASSED: Insufficient coins correctly rejected with error toast, preserving coin balance.');
 
-  // TEST 6: Next Level Transition & State Reset
-  console.log('\n--- TEST 6: Next Level Transition ---');
+  // TEST 6: Prominent Watch Video Button & Rewarded Ad Economy
+  console.log('\n--- TEST 6: Rewarded Video Button ("Watch Video") on Level Cleared Modal ---');
+  const watchAdBtnVisible = await page.$eval('#level-clear-watch-ad-btn', el => {
+    const rect = el.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0 && !el.closest('.modal-hidden');
+  });
+  const watchAdBtnText = await page.$eval('#level-clear-watch-ad-btn', el => el.textContent.trim());
+  const watchAdBtnClass = await page.$eval('#level-clear-watch-ad-btn', el => el.className);
+
+  console.log(`Watch Video button visible: ${watchAdBtnVisible}`);
+  console.log(`Watch Video button text: "${watchAdBtnText}"`);
+  console.log(`Watch Video button class: "${watchAdBtnClass}"`);
+
+  if (!watchAdBtnVisible) throw new Error('#level-clear-watch-ad-btn is not visible on Level Cleared modal!');
+  if (!watchAdBtnText.includes('+50 Coins') || !watchAdBtnText.includes('Watch Video')) {
+    throw new Error(`Expected button text to contain '+50 Coins' and 'Watch Video', got: ${watchAdBtnText}`);
+  }
+  if (!watchAdBtnClass.includes('watch-ad-btn')) {
+    throw new Error(`Expected button class to include 'watch-ad-btn', got: ${watchAdBtnClass}`);
+  }
+
+  // Click Watch Video button from summary modal
+  const coinsBeforeAd = await page.evaluate(() => window.wordMappingGame.coins);
+  console.log(`Coin balance before watching ad: ${coinsBeforeAd}`);
+
+  await page.click('#level-clear-watch-ad-btn');
+  await page.waitForTimeout(300);
+
+  const adModalVisible = await page.$eval('#ad-modal', el => !el.classList.contains('modal-hidden'));
+  console.log(`Ad showcase modal visible: ${adModalVisible}`);
+  if (!adModalVisible) throw new Error('#ad-modal did not open when Watch Video was clicked!');
+
+  // Wait for 4s simulated ad countdown to finish
+  console.log('Waiting for simulated ad showcase duration (4.2s)...');
+  await page.waitForTimeout(4200);
+
+  const claimBtnEnabled = await page.$eval('#claim-ad-reward-btn', el => !el.disabled);
+  const claimBtnText = await page.$eval('#claim-ad-reward-btn', el => el.textContent.trim());
+  console.log(`Claim button enabled: ${claimBtnEnabled} with text "${claimBtnText}"`);
+  if (!claimBtnEnabled) throw new Error('Claim Ad Reward button did not enable after countdown!');
+
+  await page.click('#claim-ad-reward-btn');
+  await page.waitForTimeout(400);
+
+  const adModalClosed = await page.$eval('#ad-modal', el => el.classList.contains('modal-hidden'));
+  const coinsAfterAd = await page.evaluate(() => window.wordMappingGame.coins);
+  const headerCoinsAfterAd = await page.$eval('#coin-display', el => parseInt(el.textContent.trim(), 10));
+  const modalCoinsAfterAd = await page.$eval('#clear-coins-total', el => parseInt(el.textContent.trim(), 10));
+
+  console.log(`Ad modal closed: ${adModalClosed}`);
+  console.log(`Coins after ad: ${coinsAfterAd} (Expected: ${coinsBeforeAd + 50})`);
+  console.log(`Global #coin-display after ad: ${headerCoinsAfterAd}`);
+  console.log(`Modal #clear-coins-total after ad: ${modalCoinsAfterAd}`);
+
+  if (!adModalClosed) throw new Error('Ad modal failed to close after claim!');
+  if (coinsAfterAd !== coinsBeforeAd + 50) {
+    throw new Error(`Expected coins to increase by 50 (from ${coinsBeforeAd} to ${coinsBeforeAd + 50}), got: ${coinsAfterAd}`);
+  }
+  if (headerCoinsAfterAd !== coinsAfterAd) {
+    throw new Error(`Global coin display not synced: ${headerCoinsAfterAd} vs ${coinsAfterAd}`);
+  }
+  if (modalCoinsAfterAd !== coinsAfterAd) {
+    throw new Error(`Modal clear coins display not synced: ${modalCoinsAfterAd} vs ${coinsAfterAd}`);
+  }
+  console.log('✓ TEST 6 PASSED: Watch Video granted exactly 50 coins and dynamically updated both coin counters.');
+
+  // TEST 7: Translate Unlocked Word with Newly Earned Video Coins
+  console.log('\n--- TEST 7: Translate Word with Newly Earned Coins ---');
+  console.log(`Now translating previously rejected word "${secondWord}" with ${coinsAfterAd} coins...`);
+  await page.click(`#summary-word-${secondWord} .translate-btn`);
+  await page.waitForTimeout(300);
+
+  const coinsAfterSecondTrans = await page.evaluate(() => window.wordMappingGame.coins);
+  const secondTransResult = await page.$eval(`#summary-word-${secondWord} .translation-result`, el => el.textContent.trim());
+
+  console.log(`Coins after translating "${secondWord}": ${coinsAfterSecondTrans} (Expected: ${coinsAfterAd - 9})`);
+  console.log(`Translation display for ${secondWord}: "${secondTransResult}"`);
+
+  if (coinsAfterSecondTrans !== coinsAfterAd - 9) {
+    throw new Error(`Expected ${coinsAfterAd - 9} coins, got ${coinsAfterSecondTrans}`);
+  }
+  if (!secondTransResult.includes(secondWord.toLowerCase())) {
+    throw new Error(`Translation result missing word: ${secondTransResult}`);
+  }
+  console.log('✓ TEST 7 PASSED: Second translation succeeded with video reward coins.');
+
+  // Take screenshot of Level Cleared Summary modal with Watch Video button and translations
+  const screenshotDir = path.resolve(__dirname, 'qa-reports');
+  if (!fs.existsSync(screenshotDir)) fs.mkdirSync(screenshotDir, { recursive: true });
+  const screenshotPath = path.join(screenshotDir, 'level-clear-summary-screen.png');
+  await page.screenshot({ path: screenshotPath });
+  console.log(`\nScreenshot saved to: ${screenshotPath}`);
+
+  // TEST 8: Next Level Transition & State Reset
+  console.log('\n--- TEST 8: Next Level Transition ---');
   await page.click('#next-level-btn');
   await page.waitForTimeout(400);
 
@@ -199,7 +292,7 @@ async function runTests() {
 
   if (!modalHiddenAfterNext) throw new Error('#level-clear-modal did not close when Next Level was clicked!');
   if (currentLevelNumber !== 2) throw new Error(`Expected level 2, got ${currentLevelNumber}`);
-  console.log('✓ TEST 6 PASSED: Next Level transitions cleanly, modal closes, and level 2 loads.');
+  console.log('✓ TEST 8 PASSED: Next Level transitions cleanly, modal closes, and level 2 loads.');
 
   await browser.close();
 

@@ -598,7 +598,7 @@ html, body {
   padding: 8px 18px;
   font-size: 0.85rem;
   font-weight: 700;
-  z-index: 100;
+  z-index: 300;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   transition: opacity 0.25s ease, transform 0.25s ease;
   pointer-events: none;
@@ -799,6 +799,10 @@ html, body {
 }
 
 /* --- Rewarded Video Ad Modal Styles --- */
+#ad-modal {
+  z-index: 200;
+}
+
 .ad-video-mock {
   background: #000000;
   border-radius: var(--radius-md);
@@ -893,6 +897,35 @@ html, body {
 .celebration-subtitle {
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+/* --- Level Cleared Rewarded Video Banner --- */
+.summary-ad-banner {
+  width: 100%;
+  margin: 6px 0 2px;
+  display: flex;
+  justify-content: center;
+}
+
+.summary-watch-ad-btn {
+  width: 100%;
+  height: 38px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 6px 16px;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
+}
+
+.summary-watch-ad-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.65);
+}
+
+.summary-watch-ad-btn .ad-btn-icon {
+  font-size: 1.15rem;
 }
 
 /* --- Level Cleared Targeted Words Summary Section --- */
