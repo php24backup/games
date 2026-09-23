@@ -188,21 +188,24 @@
       if (!this.ctx) return;
 
       try {
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
         const now = this.ctx.currentTime;
         const duration = 0.55;
 
-        // Resonant BiquadFilter with Q resonance for soft acoustic shimmer
+        // Resonant BiquadFilter with Q resonance for bright acoustic shimmer
         const filter = this.ctx.createBiquadFilter();
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1400, now);
-        filter.frequency.exponentialRampToValueAtTime(3600, now + 0.22);
-        filter.frequency.exponentialRampToValueAtTime(1200, now + duration);
+        filter.frequency.setValueAtTime(2400, now);
+        filter.frequency.exponentialRampToValueAtTime(5400, now + 0.22);
+        filter.frequency.exponentialRampToValueAtTime(1800, now + duration);
         filter.Q.setValueAtTime(3.5, now);
 
-        // Light gain envelope decay
+        // Crisp presence master gain envelope decay
         const masterGain = this.ctx.createGain();
-        masterGain.gain.setValueAtTime(0.0001, now);
-        masterGain.gain.linearRampToValueAtTime(0.24, now + 0.035);
+        masterGain.gain.setValueAtTime(0.01, now);
+        masterGain.gain.linearRampToValueAtTime(0.30, now + 0.03);
         masterGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
         // Chained sine-wave oscillator 1: 523.25Hz (C5) -> 659.25Hz (E5) -> 783.99Hz (G5)
@@ -216,12 +219,12 @@
         const osc2 = this.ctx.createOscillator();
         const osc2Gain = this.ctx.createGain();
         osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(523.25 * 2, now + 0.04);
-        osc2.frequency.exponentialRampToValueAtTime(659.25 * 2, now + 0.15);
-        osc2.frequency.exponentialRampToValueAtTime(783.99 * 2, now + 0.30);
+        osc2.frequency.setValueAtTime(523.25 * 2, now);
+        osc2.frequency.exponentialRampToValueAtTime(659.25 * 2, now + 0.14);
+        osc2.frequency.exponentialRampToValueAtTime(783.99 * 2, now + 0.28);
 
-        osc2Gain.gain.setValueAtTime(0.0001, now);
-        osc2Gain.gain.linearRampToValueAtTime(0.12, now + 0.05);
+        osc2Gain.gain.setValueAtTime(0.01, now);
+        osc2Gain.gain.linearRampToValueAtTime(0.18, now + 0.04);
         osc2Gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
         // Connect audio graph
