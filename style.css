@@ -1494,3 +1494,64 @@ html, body {
     font-size: 0.58rem;
   }
 }
+
+/* ============================================================================
+ * 14. GLOBAL FOOTER & LEGAL COPYRIGHT / EULA STYLES
+ * ============================================================================
+ */
+.game-global-footer {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 6px 10px;
+  text-align: center;
+  background: rgba(10, 12, 22, 0.85);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.game-global-footer .footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-dim, #7e8bb6);
+  line-height: 1.3;
+}
+
+.game-global-footer .copyright-statement {
+  letter-spacing: 0.2px;
+}
+
+.game-global-footer .footer-divider {
+  opacity: 0.4;
+  margin: 0 2px;
+}
+
+.game-global-footer .license-terms-link {
+  color: var(--accent-cyan, #00d2ff);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: opacity 0.2s ease, text-decoration 0.2s ease;
+}
+
+.game-global-footer .license-terms-link:hover,
+.game-global-footer .license-terms-link:focus-visible {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+@media (max-width: 480px) {
+  .game-global-footer {
+    padding: 4px 6px;
+  }
+  .game-global-footer .footer-content {
+    font-size: 0.65rem;
+    gap: 4px;
+  }
+}
+

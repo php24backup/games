@@ -1,0 +1,12 @@
+Copyright (c) 2026 Rambir Bhatiwal
+GitHub: https://github.com/rambir-bhatiwal
+All Rights Reserved.
+
+You are permitted to download, compile, and play this game for personal, non-commercial use.
+You are granted access to view the source code for educational and reference purposes.
+
+However, you are NOT permitted to:
+- Modify, alter, or create derivative works from this code or its assets.
+- Redistribute modified versions of this game.
+- Use any portion of this code or its assets in your own projects without prior written permission from the creator.
+- Use this game or its source code for any commercial purposes.
