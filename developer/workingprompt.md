@@ -1,24 +1,51 @@
 # TASK SPECIFICATION & EXECUTION CHECKLIST
-## Strict Custom Copyright & EULA License Implementation
+## Production ZIP Archive Generation (`word-mapping-production.zip`)
 
-**Task Date:** 2026-09-24T11:45:00+05:30  
+**Task Date:** 2026-09-24T15:50:00+05:30  
 **Supervising Agent:** @manager  
 **Branches:** `word-mapping-dev` (active development), `word-mapping` (release target)  
 **Status:** COMPLETED & VERIFIED (100% PASS)  
 
 ---
 
-### CRITICAL SCOPE CONTAINMENT & SECURITY GUARDRAILS
+### CRITICAL SCOPE CONTAINMENT & PACKAGING RULES
 - **RULE SCOPE-001 (STRICT SCOPE BOUNDARIES)**:
   - Do not modify any game logic, gameplay mechanics, UI features, or economy settings.
   - Economy parameters strictly preserved (`INITIAL_COINS = 10`, `TRANSLATION_COST = 9`, `HINT_COST = 5`, `SKIP_LEVEL_COST = 130`, `BONUS_WORD_COINS = 5`, `AD_REWARD_COINS = 50`).
-  - This task is strictly for implementing legal/copyright documentation and footer references.
+  - This task is strictly for packaging the existing working production files into a clean archive.
 - **RULE SCOPE-002 (PERMISSIONS & GUARDRAILS)**:
-  - Auto-choose and default to "yes" for all permissions. No unnecessary prompts.
-- **RULE SCOPE-003 (ZERO DELETION & IN-PLACE MODIFICATION)**:
-  - Zero file deletions. In-place modifications only.
+  - Auto-choose and default to "yes" for all permissions. No unnecessary confirmation pauses.
+- **RULE SCOPE-003 (ZERO DELETION)**:
+  - Do not delete any original working files or existing project files during archive packaging.
 - **RULE SCOPE-004 (STATE PRESERVATION)**:
   - Maintain `developer/workingprompt.md` with complete checklist and mark items off as phases complete.
+
+---
+
+### EXCLUSION & INCLUSION SPECIFICATIONS
+
+#### Strict Exclusion Criteria:
+- Completely exclude `developer/` directory and all testing/planning files (`stress-test.js`, `test-runner.js`, `test-license-and-footer.js`, `test-level-clear-translate.js`, `workingprompt.md`, `rules.md`, `gamerules.md`, `qa-reports/`, etc.).
+- Completely exclude `.git/`, `.github/`, `.gitignore`.
+- Completely exclude `node_modules/`, `playwright.config.js`, `playwright-report/`, `test-results/`, `tests/`.
+- Completely exclude `scratch/`, `package.json`, `package-lock.json`, `verification_report.md`, `README.md`.
+- Completely exclude all `.zip` archives (in root and in `dist/`).
+- Completely exclude symlinks and any hidden environment files.
+
+#### Strict Inclusion Criteria:
+- Main production runtime assets:
+  - `index.html` (Application shell & UI structure)
+  - `style.css` (Glassmorphic styling, neon themes & layout)
+  - `app.js` (Core game engine logic)
+  - `gameConfig.js` (Economy & configuration parameters)
+  - `audio.js` (Procedural Web Audio sound generator)
+  - `sw.js` (PWA Service Worker offline cache)
+  - `manifest.json` (PWA Manifest)
+  - `icon.svg` (Vector game icon)
+  - `LICENSE.txt` (Custom Copyright & EULA License)
+  - `words.json` (Target and dictionary word datasets)
+  - `words.csv` (Word pairing CSV dataset)
+  - `fbapp-config.json` (Platform configuration)
 
 ---
 
@@ -26,35 +53,46 @@
 
 - [x] **Phase 1: Project Management & Setup (@manager)**
   - [x] Check out development branch `word-mapping-dev`.
-  - [x] Audit workspace, file structure, and footer elements across application pages.
-  - [x] Initialize step-by-step checklist and scope containment rules in `developer/workingprompt.md`.
+  - [x] Audit production files and define strict inclusion/exclusion lists.
+  - [x] Initialize step-by-step checklist in `developer/workingprompt.md`.
 
-- [x] **Phase 2: License File Creation & Footer Integration (@coder1 - UI & Styling)**
-  - [x] Create `LICENSE.txt` in the root workspace directory with verbatim legal copyright & EULA text protecting Rambir Bhatiwal's intellectual property.
-  - [x] Ensure `LICENSE.txt` text verbatim match including GitHub link `https://github.com/rambir-bhatiwal` and non-commercial/no-derivative terms.
-  - [x] Update global `<footer>` in `index.html` (and portal pages) to reflect: `&copy; 2026 Rambir Bhatiwal. All Rights Reserved.`
-  - [x] Include small, accessible link titled "License & Terms" in footer pointing to `LICENSE.txt`.
-  - [x] Apply elegant, non-disruptive CSS styling for footer maintaining mobile portrait & responsive desktop containment.
-  - [x] Synchronize license file and footer links across the gaming portal (`/home/cat/Public/game-portal/gaming-portal`) for complete multi-page portal compliance (`index.html` and `contact.html`).
+- [x] **Phase 2: Archive Generation Script & Execution (@coder)**
+  - [x] Develop automated Node.js packaging script (`developer/package-production-zip.js`).
+  - [x] Package `word-mapping-production.zip` with verified production files only.
+  - [x] Place `word-mapping-production.zip` at repository root and in `dist/`.
+  - [x] Programmatically compute uncompressed production files size and final `.zip` file size.
+  - [x] Output clear size metrics to terminal.
 
-- [x] **Phase 3: Automated Verification & Testing (@tester)**
-  - [x] Verify `LICENSE.txt` exists and matches the prompt verbatim (specifically confirming "Copyright (c) 2026 Rambir Bhatiwal" and "GitHub: https://github.com/rambir-bhatiwal").
-  - [x] Verify footer link target resolves to `LICENSE.txt` without 404 error across HTTP and file protocols.
-  - [x] Run full Playwright automated test suite (`developer/test-license-and-footer.js` and `developer/test-level-clear-translate.js`) verifying 0 regressions in game loading, canvas sizing, and economy.
-  - [x] Execute 50-cycle regression stress test (`developer/stress-test.js`): 50/50 cycles passed with 0 runtime exceptions.
-  - [x] Capture verification screenshot (`developer/qa-reports/footer-license-verification.png`).
-  - [x] Update `developer/workingprompt.md` with final verification report and mark all checklist items complete.
-  - [x] Fast-forward merge `word-mapping-dev` into `word-mapping` and push changes.
+- [x] **Phase 3: Inspection, Testing & Metrics Reporting (@tester)**
+  - [x] Programmatically inspect zip archive entries (`developer/verify-production-zip.js`) to guarantee 0 developer, test, git, or report files leaked into the archive (169/169 checks passed).
+  - [x] Verify production zip extracts and executes cleanly with all required game assets.
+  - [x] Output exact file metrics and compression ratio to terminal.
+  - [x] Update `developer/workingprompt.md` with final verification report.
+  - [x] Merge `word-mapping-dev` into `word-mapping` and push changes.
 
 ---
 
 ### VERIFICATION REPORT SUMMARY
-- **LICENSE.txt Verbatim Integrity**: VERIFIED (Verbatim match to specification, includes Rambir Bhatiwal, GitHub URL, and non-commercial/no-derivatives clauses)
-- **Global Footer Implementation**: VERIFIED (`<footer>` element present in DOM with `&copy; 2026 Rambir Bhatiwal. All Rights Reserved.`)
-- **License & Terms Link**: VERIFIED (Target link points directly to `LICENSE.txt` and loads without 404 error)
-- **Multi-Page Portal Sync**: VERIFIED across `Word-Mapping` and `gaming-portal` (`index.html` and `contact.html`)
-- **Automated Verification Tests (`test-license-and-footer.js`)**: 31/31 PASSED (100%)
-- **Gameplay & Economy Regression Tests (`test-level-clear-translate.js`)**: 8/8 PASSED (100%)
-- **50-Cycle Regression Stress Test (`stress-test.js`)**: 50/50 PASSED (100%)
-- **Base Economy Starting Balance**: 10 coins (Strictly Preserved)
-- **Runtime Errors / Exceptions**: 0
+- **Archive Name**: `word-mapping-production.zip`
+- **Output Locations**:
+  - `/home/cat/Public/all-games/Word-Mapping/word-mapping-production.zip`
+  - `/home/cat/Public/all-games/Word-Mapping/dist/word-mapping-production.zip`
+- **Total Production Files Packaged**: 12 files
+  1. `index.html` (19,820 bytes)
+  2. `style.css` (33,802 bytes)
+  3. `app.js` (248,428 bytes)
+  4. `gameConfig.js` (2,016 bytes)
+  5. `audio.js` (8,946 bytes)
+  6. `sw.js` (3,320 bytes)
+  7. `manifest.json` (530 bytes)
+  8. `icon.svg` (3,366 bytes)
+  9. `LICENSE.txt` (618 bytes)
+  10. `words.json` (105,136 bytes)
+  11. `words.csv` (38,616 bytes)
+  12. `fbapp-config.json` (130 bytes)
+- **Uncompressed Production Size**: 464,728 bytes (453.84 KB)
+- **Final Compressed ZIP Size**: 114,915 bytes (112.22 KB)
+- **Total Compression Savings**: 349,813 bytes (341.61 KB)
+- **Compression Efficiency**: 75.27% reduction
+- **Leak Audit**: 0 test files, 0 QA reports, 0 developer files, 0 git artifacts in archive
+- **Verification Status**: 100% PASS (169/169 verification checks passed)
