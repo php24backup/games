@@ -75,6 +75,7 @@ html, body {
 /* --- Top Header Bar --- */
 #top-bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
@@ -84,16 +85,20 @@ html, body {
   border-bottom: 1px solid var(--border-subtle);
   z-index: 20;
   gap: 8px;
+  height: auto;
+  min-height: 48px;
 }
 
 .header-left, .header-right {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
 }
 
 .header-center {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
@@ -264,6 +269,7 @@ html, body {
 /* --- Gameplay Action Controls: Hint (2🪙) & Rewarded Video Ad (+50 Coins) --- */
 .action-buttons-group {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
@@ -363,18 +369,23 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  height: auto;
 }
 
 .section-header-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   padding-right: 0;
+  height: auto;
+  min-height: 32px;
 }
 
 .section-title-group {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   min-width: 0;
@@ -1381,13 +1392,17 @@ html, body {
 @media (max-width: 480px) {
   #top-bar {
     padding: 6px 8px;
-    gap: 4px;
+    gap: 6px;
+    flex-wrap: wrap;
+    height: auto;
   }
   .header-left, .header-right {
     gap: 4px;
+    flex-wrap: wrap;
   }
   .header-center {
     gap: 4px;
+    flex-wrap: wrap;
   }
   .icon-btn {
     width: 32px;
@@ -1421,6 +1436,7 @@ html, body {
   }
   #target-words-section {
     padding: 4px 8px 3px;
+    height: auto;
   }
   .words-container {
     gap: 5px 6px;
@@ -1448,13 +1464,13 @@ html, body {
     padding: 2px 7px;
   }
   .section-header-row {
-    gap: 4px;
+    gap: 6px;
+    flex-wrap: wrap;
+    height: auto;
   }
   .section-title-group {
     gap: 4px;
-  }
-  .section-title {
-    font-size: 0.68rem;
+    flex-wrap: wrap;
   }
   .bonus-tag {
     font-size: 0.68rem;
@@ -1462,6 +1478,7 @@ html, body {
   }
   .action-buttons-group {
     gap: 4px;
+    flex-wrap: wrap;
   }
   .hint-btn {
     padding: 2px 6px;

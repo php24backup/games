@@ -1,7 +1,6 @@
 {
-  "instant": {
-    "game_url": "index.html",
-    "orientation": "PORTRAIT",
+  "instant_games": {
+    "platform_version": "RICH_GAMEPLAY",
     "navigation_menu_version": "NAV_FLOATING"
   }
 }

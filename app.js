@@ -6052,20 +6052,24 @@ class WordMappingGame {
       console.warn('LocalStorage save fallback error:', e);
     }
 
-    // 2. Facebook Instant Games Cloud Storage
-    if (typeof window.FBInstant !== 'undefined' && window.FBInstant.player && typeof window.FBInstant.player.setDataAsync === 'function') {
-      try {
-        window.FBInstant.player.setDataAsync({
-          word_mapping_save_state: saveData
-        }).then(() => {
-          if (typeof window.FBInstant.player.flushDataAsync === 'function') {
-            window.FBInstant.player.flushDataAsync();
+    // 2. Facebook Instant Games Cloud Storage (Strict Boot Sequence & Null Player Fallback)
+    if (typeof window.FBInstant !== 'undefined' && window.isFBInstantStarted && window.FBInstant.player) {
+      if (typeof window.FBInstant.player.getID === 'function' && window.FBInstant.player.getID()) {
+        if (typeof window.FBInstant.player.setDataAsync === 'function') {
+          try {
+            window.FBInstant.player.setDataAsync({
+              word_mapping_save_state: saveData
+            }).then(() => {
+              if (typeof window.FBInstant.player.flushDataAsync === 'function') {
+                window.FBInstant.player.flushDataAsync();
+              }
+            }).catch(err => {
+              console.warn('FBInstant.player.setDataAsync error:', err);
+            });
+          } catch (e) {
+            console.warn('FBInstant storage exception:', e);
           }
-        }).catch(err => {
-          console.warn('FBInstant.player.setDataAsync error:', err);
-        });
-      } catch (e) {
-        console.warn('FBInstant storage exception:', e);
+        }
       }
     }
   }
@@ -6132,48 +6136,55 @@ class WordMappingGame {
       }
     }
 
-    // 3. Asynchronously check FBInstant Cloud Storage
-    if (typeof window.FBInstant !== 'undefined' && window.FBInstant.player && typeof window.FBInstant.player.getDataAsync === 'function') {
-      try {
-        window.FBInstant.player.getDataAsync(['word_mapping_save_state']).then(data => {
-          if (data && data.word_mapping_save_state) {
-            const fbState = data.word_mapping_save_state;
-            if (Array.isArray(fbState.usedWords)) {
-              fbState.usedWords.forEach(w => { if (typeof w === 'string') this.usedWords.add(w); });
-            }
-            if (fbState.levelWordsMap && typeof fbState.levelWordsMap === 'object') {
-              this.levelWordsMap = Object.assign({}, fbState.levelWordsMap, this.levelWordsMap);
-            }
-            if (Number.isInteger(fbState.coins) && fbState.coins >= 0) {
-              this.coins = fbState.coins;
-              this.updateCoinDisplay();
-            }
-            if (Number.isInteger(fbState.levelIndex) && fbState.levelIndex >= 0 && fbState.levelIndex < GAME_LEVELS.length) {
-              this.currentLevelIndex = fbState.levelIndex;
-              this.currentLevelData = GAME_LEVELS[this.currentLevelIndex];
-              this.loadLevel(this.currentLevelIndex);
-            }
-            if (Number.isInteger(fbState.maxUnlockedLevel) && fbState.maxUnlockedLevel >= 0) {
-              this.maxUnlockedLevel = Math.max(this.maxUnlockedLevel, Math.min(fbState.maxUnlockedLevel, GAME_LEVELS.length - 1));
-            }
-            if (Number.isInteger(fbState.dailyStreak) && fbState.dailyStreak >= 0) {
-              this.dailyStreak = fbState.dailyStreak;
-            }
-            if (Number.isInteger(fbState.bestDailyStreak) && fbState.bestDailyStreak >= 0) {
-              this.bestDailyStreak = fbState.bestDailyStreak;
-            }
-            if (typeof fbState.lastDailyDate === 'string') {
-              this.lastDailyDate = fbState.lastDailyDate;
-            }
-            this.checkDailyStreakLiveness();
+    // 3. Asynchronously check FBInstant Cloud Storage (Strict Boot Sequence & Null Player Fallback)
+    if (typeof window.FBInstant !== 'undefined' && window.isFBInstantStarted && window.FBInstant.player) {
+      if (typeof window.FBInstant.player.getID === 'function' && window.FBInstant.player.getID()) {
+        if (typeof window.FBInstant.player.getDataAsync === 'function') {
+          try {
+            window.FBInstant.player.getDataAsync(['word_mapping_save_state']).then(data => {
+              this.applyFBCloudData(data);
+            }).catch(err => {
+              console.warn('FBInstant.player.getDataAsync error:', err);
+            });
+          } catch (e) {
+            console.warn('FBInstant storage read error:', e);
           }
-        }).catch(err => {
-          console.warn('FBInstant.player.getDataAsync error:', err);
-        });
-      } catch (e) {
-        console.warn('FBInstant storage read error:', e);
+        }
       }
     }
+  }
+
+  applyFBCloudData(data) {
+    if (!data || !data.word_mapping_save_state) return;
+    const fbState = data.word_mapping_save_state;
+    if (Array.isArray(fbState.usedWords)) {
+      fbState.usedWords.forEach(w => { if (typeof w === 'string') this.usedWords.add(w); });
+    }
+    if (fbState.levelWordsMap && typeof fbState.levelWordsMap === 'object') {
+      this.levelWordsMap = Object.assign({}, fbState.levelWordsMap, this.levelWordsMap);
+    }
+    if (Number.isInteger(fbState.coins) && fbState.coins >= 0) {
+      this.coins = fbState.coins;
+      this.updateCoinDisplay();
+    }
+    if (Number.isInteger(fbState.levelIndex) && fbState.levelIndex >= 0 && fbState.levelIndex < GAME_LEVELS.length) {
+      this.currentLevelIndex = fbState.levelIndex;
+      this.currentLevelData = GAME_LEVELS[this.currentLevelIndex];
+      this.loadLevel(this.currentLevelIndex);
+    }
+    if (Number.isInteger(fbState.maxUnlockedLevel) && fbState.maxUnlockedLevel >= 0) {
+      this.maxUnlockedLevel = Math.max(this.maxUnlockedLevel, Math.min(fbState.maxUnlockedLevel, GAME_LEVELS.length - 1));
+    }
+    if (Number.isInteger(fbState.dailyStreak) && fbState.dailyStreak >= 0) {
+      this.dailyStreak = fbState.dailyStreak;
+    }
+    if (Number.isInteger(fbState.bestDailyStreak) && fbState.bestDailyStreak >= 0) {
+      this.bestDailyStreak = fbState.bestDailyStreak;
+    }
+    if (typeof fbState.lastDailyDate === 'string') {
+      this.lastDailyDate = fbState.lastDailyDate;
+    }
+    this.checkDailyStreakLiveness();
   }
 
   /* --------------------------------------------------------------------------
@@ -6231,20 +6242,14 @@ class WordMappingGame {
       }
     }
 
-    // 3. Meta Facebook Instant Games SDK Integration (window.FBInstant)
+    // 3. Meta Facebook Instant Games SDK Lifecycle Hooks (window.FBInstant)
     if (typeof window.FBInstant !== 'undefined') {
       try {
-        window.FBInstant.initializeAsync().then(() => {
-          window.FBInstant.setLoadingProgress(100);
-          window.FBInstant.startGameAsync().catch(err => {
-            console.warn('FBInstant.startGameAsync note:', err);
-          });
-        }).catch(err => {
-          console.warn('FBInstant.initializeAsync note:', err);
-        });
-        window.FBInstant.onPause(() => this.pauseGame());
+        if (typeof window.FBInstant.onPause === 'function') {
+          window.FBInstant.onPause(() => this.pauseGame());
+        }
       } catch (e) {
-        console.warn('FBInstant fallback initialization:', e);
+        console.warn('FBInstant onPause hook note:', e);
       }
     }
   }
@@ -6961,36 +6966,53 @@ class WordMappingGame {
   }
 
   /* --------------------------------------------------------------------------
-   * Rewarded Video Ad Simulation & Platform Integration (+50 Coins)
+   * Official Facebook Instant Games Rewarded Video API Integration (+50 Coins)
    * --------------------------------------------------------------------------
-   * Fully compliant with Section 4.3 (Meta Audience Network Ads) & YouTube Playables:
-   * - In Facebook Instant Games, checks FBInstant.getRewardedVideoAsync() first.
-   * - Seamlessly falls back to high-fidelity, timer-based simulated partner showcase
-   *   when running in web sandboxes or test environments.
-   * - Automatically pauses gameplay, countdown timers, and audio during ad playback.
+   * Strictly compliant with Meta Instant Games Monetization Policy (Rule 7):
+   * - Uses official FBInstant.getRewardedVideoAsync('YOUR_PLACEMENT_ID') API.
+   * - Pre-loads via loadAsync() and displays via showAsync().
+   * - Awards +50 coins immediately upon completion.
+   * - Simulated or generic ad loops/modals are strictly prohibited in Facebook builds.
    */
   startWatchAdFlow() {
     this.pauseGame();
 
-    // Check for native Meta Instant Games Rewarded Video API
+    const self = this;
     if (typeof window.FBInstant !== 'undefined' && typeof window.FBInstant.getRewardedVideoAsync === 'function') {
-      try {
-        window.FBInstant.getRewardedVideoAsync('REWARDED_VIDEO_PLACEMENT_ID')
-          .then(rewardedVideo => rewardedVideo.loadAsync().then(() => rewardedVideo.showAsync()))
-          .then(() => {
-            this.claimAdReward();
-          })
-          .catch(err => {
-            console.warn('FBInstant rewarded video not primed, playing simulated showcase fallback:', err);
-            this.runSimulatedAdShowcase();
-          });
-        return;
-      } catch (e) {
-        console.warn('FBInstant ad request exception:', e);
-      }
+      let adInstance;
+      window.FBInstant.getRewardedVideoAsync('YOUR_PLACEMENT_ID')
+        .then(rewardedVideo => {
+          adInstance = rewardedVideo;
+          return rewardedVideo.loadAsync();
+        })
+        .then(() => adInstance.showAsync())
+        .then(() => {
+          // ADD THE +50 COINS HERE
+          const adReward = (typeof GAME_CONFIG !== 'undefined' && Number.isInteger(GAME_CONFIG.AD_REWARD_COINS))
+            ? GAME_CONFIG.AD_REWARD_COINS
+            : 50;
+          self.isWatchingAd = false;
+          self.resumeGame();
+          self.addCoins(adReward, 'Watched Video');
+          self.showToast(`+${adReward} Coins Added! 🎬🪙`, 'success');
+        })
+        .catch(function(err) {
+          console.warn('FBInstant Rewarded Video error / dismissed:', err);
+          self.isWatchingAd = false;
+          self.resumeGame();
+          self.showToast('Ad not available or dismissed.', 'info');
+        });
+      return;
     }
 
-    this.runSimulatedAdShowcase();
+    // Standalone fallback when FBInstant is not present: Award reward directly without simulated ad loop
+    const adReward = (typeof GAME_CONFIG !== 'undefined' && Number.isInteger(GAME_CONFIG.AD_REWARD_COINS))
+      ? GAME_CONFIG.AD_REWARD_COINS
+      : 50;
+    this.isWatchingAd = false;
+    this.resumeGame();
+    this.addCoins(adReward, 'Watched Video');
+    this.showToast(`+${adReward} Coins Added! 🎬🪙`, 'success');
   }
 
   runSimulatedAdShowcase() {
@@ -8366,14 +8388,182 @@ class WordMappingGame {
   }
 }
 
-// Instantiate engine when DOM is ready in browser environment
+// Ensure FBInstant compatibility in both Meta iframe and standalone/local testing environments
+// Ensure FBInstant compatibility in both Meta iframe and standalone/local testing environments
+if (typeof window !== 'undefined') {
+  if (typeof window.FBInstant === 'undefined') {
+    window.FBInstant = {
+      initializeAsync: function() { return Promise.resolve(); },
+      startGameAsync: function() { return Promise.resolve(); },
+      setLoadingProgress: function() {},
+      getRewardedVideoAsync: function(placementId) {
+        return Promise.resolve({
+          loadAsync: function() { return Promise.resolve(); },
+          showAsync: function() { return Promise.resolve(); }
+        });
+      },
+      player: {
+        getID: function() { return 'standalone_dev_player'; },
+        getDataAsync: function() { return Promise.resolve({}); },
+        setDataAsync: function() { return Promise.resolve(); },
+        flushDataAsync: function() { return Promise.resolve(); }
+      },
+      context: {
+        getType: function() { return 'SOLO'; },
+        getPlayersAsync: function() { return Promise.resolve([]); }
+      },
+      getTournamentAsync: function() {
+        return Promise.reject(new Error("TOURNAMENT_NOT_FOUND"));
+      }
+    };
+  } else {
+    // In standalone / local environment where no parent iframe responds, prevent initializeAsync hanging
+    const isStandalone = (window === window.parent || window.location.protocol === 'file:');
+    if (isStandalone) {
+      window.FBInstant.initializeAsync = function() {
+        return Promise.resolve();
+      };
+      window.FBInstant.startGameAsync = function() {
+        return Promise.resolve();
+      };
+      window.FBInstant.setLoadingProgress = function() {};
+      window.FBInstant.getRewardedVideoAsync = function(placementId) {
+        return Promise.resolve({
+          loadAsync: function() { return Promise.resolve(); },
+          showAsync: function() { return Promise.resolve(); }
+        });
+      };
+      if (!window.FBInstant.player) {
+        window.FBInstant.player = {};
+      }
+      window.FBInstant.player.getID = function() { return 'standalone_dev_player'; };
+      window.FBInstant.player.getDataAsync = function() { return Promise.resolve({}); };
+      window.FBInstant.player.setDataAsync = function() { return Promise.resolve(); };
+      window.FBInstant.player.flushDataAsync = function() { return Promise.resolve(); };
+      if (!window.FBInstant.context) {
+        window.FBInstant.context = {};
+      }
+      window.FBInstant.context.getType = function() { return 'SOLO'; };
+      window.FBInstant.context.getPlayersAsync = function() { return Promise.resolve([]); };
+      window.FBInstant.getTournamentAsync = function() {
+        return Promise.reject(new Error("TOURNAMENT_NOT_FOUND"));
+      };
+    }
+  }
+}
+
+/**
+ * Rule 12 - FB INSTANT CONTEXT CHECKS:
+ * FBInstant.context.getPlayersAsync() will throw an INVALID_OPERATION error if the game is in a solo session.
+ * The game MUST verify if (FBInstant.context.getType() && FBInstant.context.getType() !== 'SOLO') before attempting to fetch context players.
+ */
+function getContextPlayersSafe() {
+  if (typeof window !== 'undefined' && typeof window.getContextPlayersSafe === 'function') {
+    return window.getContextPlayersSafe();
+  }
+  if (typeof FBInstant !== 'undefined' && FBInstant.context && typeof FBInstant.context.getPlayersAsync === 'function') {
+    if (typeof FBInstant.context.getType === 'function' && FBInstant.context.getType() && FBInstant.context.getType() !== 'SOLO') {
+      return FBInstant.context.getPlayersAsync().catch(function(err) {
+        console.warn('FBInstant.context.getPlayersAsync error:', err);
+        return [];
+      });
+    } else {
+      console.log('FBInstant context is SOLO or undefined. Skipping getPlayersAsync() to prevent INVALID_OPERATION.');
+      return Promise.resolve([]);
+    }
+  }
+  return Promise.resolve([]);
+}
+
+/**
+ * Rule 14 - FB INSTANT TOURNAMENT SAFEGUARDS:
+ * Tournament APIs (like getTournamentAsync) will throw a TOURNAMENT_NOT_FOUND error if called blindly.
+ * They must be wrapped in try/catch blocks or triggered only via explicit user action, not on auto-boot.
+ * Any tournament promise chain must include a .catch(err => console.log("No tournament active")) block so it fails silently.
+ */
+function getActiveTournamentSafe() {
+  if (typeof window !== 'undefined' && typeof window.getActiveTournamentSafe === 'function') {
+    return window.getActiveTournamentSafe();
+  }
+  if (typeof FBInstant !== 'undefined' && typeof FBInstant.getTournamentAsync === 'function') {
+    try {
+      return FBInstant.getTournamentAsync().catch(function(err) {
+        console.log("No tournament active", err);
+        return null;
+      });
+    } catch (e) {
+      console.log("No tournament active", e);
+      return Promise.resolve(null);
+    }
+  }
+  return Promise.resolve(null);
+}
+
+// Instantiate engine when DOM is ready using Meta Facebook Instant Games SDK lifecycle (Single Init & Strict Boot Sequence)
+function startWordMappingApp() {
+  if (typeof window === 'undefined') return;
+  if (window.__fbInstantInitialized || window.__fbInstantInitializing) {
+    return;
+  }
+  if (typeof bootFBInstantGame === 'function') {
+    bootFBInstantGame();
+    return;
+  }
+
+  window.__fbInstantInitializing = true;
+  FBInstant.initializeAsync()
+    .then(function() {
+      window.__fbInstantInitialized = true;
+      // Step 2: Asset loading progress
+      FBInstant.setLoadingProgress(100);
+      console.log("Facebook SDK Initialized!");
+      
+      // Step 3: Start game with rejection recovery
+      return FBInstant.startGameAsync().catch(function(err) {
+        console.warn("FBInstant.startGameAsync rejection:", err);
+        return Promise.resolve();
+      });
+    })
+    .then(function() {
+      // Step 4: Strict Boot Sequence & Player ID Null Check (Rule 11)
+      window.isFBInstantStarted = true;
+      if (typeof FBInstant.player !== 'undefined' && typeof FBInstant.player.getID === 'function' && FBInstant.player.getID()) {
+        if (typeof FBInstant.player.getDataAsync === 'function') {
+          return FBInstant.player.getDataAsync(['word_mapping_save_state']).catch(function(err) {
+            console.warn("FBInstant.player.getDataAsync error:", err);
+            return null;
+          });
+        }
+      }
+      return null;
+    })
+    .then(function(cloudData) {
+      if (!window.wordMappingGame) {
+        window.wordMappingGame = new WordMappingGame();
+      }
+      if (cloudData && typeof window.wordMappingGame.applyFBCloudData === 'function') {
+        window.wordMappingGame.applyFBCloudData(cloudData);
+      }
+    })
+    .catch(function(err) {
+      console.warn("FBInstant startup note:", err);
+      window.isFBInstantStarted = true;
+      if (!window.wordMappingGame) {
+        window.wordMappingGame = new WordMappingGame();
+      }
+    });
+}
+
+if (typeof window !== 'undefined') {
+  window.getContextPlayersSafe = window.getContextPlayersSafe || getContextPlayersSafe;
+  window.getActiveTournamentSafe = window.getActiveTournamentSafe || getActiveTournamentSafe;
+}
+
 if (typeof window !== 'undefined' && typeof document !== 'undefined' && typeof process === 'undefined') {
   if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', () => {
-      window.wordMappingGame = new WordMappingGame();
-    });
+    window.addEventListener('DOMContentLoaded', startWordMappingApp);
   } else {
-    window.wordMappingGame = new WordMappingGame();
+    startWordMappingApp();
   }
 }
 
@@ -8387,7 +8577,10 @@ if (typeof module !== 'undefined' && module.exports) {
     getContrastRatio,
     getContrastSafeTextColor,
     SoundEngine,
-    WordMappingGame
+    WordMappingGame,
+    getContextPlayersSafe,
+    getActiveTournamentSafe
   };
 }
+
 

@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-const EXPECTED_LICENSE_TEXT = `Copyright (c) 2026 Rambir Bhatiwal
+const EXPECTED_LICENSE_TEXT = `Copyright (c) 2026 Rambir
 GitHub: https://github.com/rambir-bhatiwal
 All Rights Reserved.
 
@@ -48,7 +48,7 @@ async function runVerification() {
   const rawLicenseContent = fs.readFileSync(licensePath, 'utf8').trim().replace(/\r\n/g, '\n');
   const normalizedExpected = EXPECTED_LICENSE_TEXT.trim().replace(/\r\n/g, '\n');
 
-  assert(rawLicenseContent.includes('Rambir Bhatiwal'), 'LICENSE.txt explicitly contains "Rambir Bhatiwal"');
+  assert(rawLicenseContent.includes('Rambir'), 'LICENSE.txt explicitly contains "Rambir"');
   assert(rawLicenseContent.includes('GitHub: https://github.com/rambir-bhatiwal'), 'LICENSE.txt contains author GitHub profile link');
   assert(rawLicenseContent.includes('All Rights Reserved.'), 'LICENSE.txt contains "All Rights Reserved."');
   assert(rawLicenseContent.includes('personal, non-commercial use'), 'LICENSE.txt specifies personal, non-commercial use permission');
@@ -64,9 +64,9 @@ async function runVerification() {
   const indexHtml = fs.readFileSync(indexPath, 'utf8');
   assert(/<footer[\s\S]*?<\/footer>/i.test(indexHtml), 'index.html contains a <footer> element');
   assert(
-    indexHtml.includes('2026 Rambir Bhatiwal. All Rights Reserved.') ||
-    indexHtml.includes('&copy; 2026 Rambir Bhatiwal. All Rights Reserved.'),
-    'index.html contains the exact copyright statement "&copy; 2026 Rambir Bhatiwal. All Rights Reserved."'
+    indexHtml.includes('2026 Rambir. All Rights Reserved.') ||
+    indexHtml.includes('&copy; 2026 Rambir. All Rights Reserved.'),
+    'index.html contains the exact copyright statement "&copy; 2026 Rambir. All Rights Reserved."'
   );
   assert(indexHtml.includes('License &amp; Terms') || indexHtml.includes('License & Terms'), 'index.html footer contains "License & Terms" text');
   assert(/href=["']LICENSE\.txt["']/i.test(indexHtml), 'index.html footer links directly to "LICENSE.txt"');
@@ -105,7 +105,7 @@ async function runVerification() {
 
   const footerText = await footerLocator.first().innerText();
   console.log(`Footer displayed text: "${footerText.replace(/\n/g, ' ')}"`);
-  assert(footerText.includes('Rambir Bhatiwal'), 'Rendered footer text includes "Rambir Bhatiwal"');
+  assert(footerText.includes('Rambir'), 'Rendered footer text includes "Rambir"');
   assert(footerText.includes('2026'), 'Rendered footer text includes "2026"');
   assert(footerText.includes('All Rights Reserved'), 'Rendered footer text includes "All Rights Reserved"');
   assert(footerText.includes('License & Terms'), 'Rendered footer text includes "License & Terms"');
@@ -122,7 +122,7 @@ async function runVerification() {
   assert(fs.existsSync(targetAbsolute), `Resolved link target exists on disk: ${targetAbsolute}`);
 
   const licenseDirectContent = fs.readFileSync(targetAbsolute, 'utf8');
-  assert(licenseDirectContent.includes('Rambir Bhatiwal'), 'Target file loaded without 404 and verified Rambir Bhatiwal IP protection');
+  assert(licenseDirectContent.includes('Rambir'), 'Target file loaded without 404 and verified Rambir IP protection');
 
   // Take screenshot of footer
   const screenshotDir = path.join(ROOT_DIR, 'developer', 'qa-reports');
@@ -151,17 +151,17 @@ async function runVerification() {
     const portalLicense = path.join(gamingPortalDir, 'LICENSE.txt');
     assert(fs.existsSync(portalLicense), 'gaming-portal has LICENSE.txt');
     const portalLicenseText = fs.readFileSync(portalLicense, 'utf8');
-    assert(portalLicenseText.includes('Rambir Bhatiwal'), 'gaming-portal LICENSE.txt contains "Rambir Bhatiwal"');
+    assert(portalLicenseText.includes('Rambir'), 'gaming-portal LICENSE.txt contains "Rambir"');
 
     const portalIndex = path.join(gamingPortalDir, 'index.html');
     const portalIndexContent = fs.readFileSync(portalIndex, 'utf8');
-    assert(portalIndexContent.includes('Rambir Bhatiwal'), 'gaming-portal index.html contains "Rambir Bhatiwal"');
+    assert(portalIndexContent.includes('Rambir'), 'gaming-portal index.html contains "Rambir"');
     assert(portalIndexContent.includes('LICENSE.txt'), 'gaming-portal index.html links to LICENSE.txt');
 
     const portalContact = path.join(gamingPortalDir, 'contact.html');
     if (fs.existsSync(portalContact)) {
       const portalContactContent = fs.readFileSync(portalContact, 'utf8');
-      assert(portalContactContent.includes('Rambir Bhatiwal'), 'gaming-portal contact.html contains "Rambir Bhatiwal"');
+      assert(portalContactContent.includes('Rambir'), 'gaming-portal contact.html contains "Rambir"');
       assert(portalContactContent.includes('LICENSE.txt'), 'gaming-portal contact.html links to LICENSE.txt');
     }
   }

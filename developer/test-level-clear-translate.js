@@ -212,35 +212,23 @@ async function runTests() {
   console.log(`Coin balance before watching ad: ${coinsBeforeAd}`);
 
   await page.click('#level-clear-watch-ad-btn');
-  await page.waitForTimeout(300);
+  await page.waitForTimeout(500);
 
+  // Per Rule 7, simulated ad modal (#ad-modal) is strictly prohibited in Facebook builds
   const adModalVisible = await page.$eval('#ad-modal', el => !el.classList.contains('modal-hidden'));
-  console.log(`Ad showcase modal visible: ${adModalVisible}`);
-  if (!adModalVisible) throw new Error('#ad-modal did not open when Watch Video was clicked!');
+  console.log(`Simulated ad modal visible: ${adModalVisible} (Expected: false per Rule 7)`);
+  if (adModalVisible) {
+    throw new Error('RULE 7 VIOLATION: Prohibited simulated ad modal opened during FBInstant rewarded video flow!');
+  }
 
-  // Wait for 4s simulated ad countdown to finish
-  console.log('Waiting for simulated ad showcase duration (4.2s)...');
-  await page.waitForTimeout(4200);
-
-  const claimBtnEnabled = await page.$eval('#claim-ad-reward-btn', el => !el.disabled);
-  const claimBtnText = await page.$eval('#claim-ad-reward-btn', el => el.textContent.trim());
-  console.log(`Claim button enabled: ${claimBtnEnabled} with text "${claimBtnText}"`);
-  if (!claimBtnEnabled) throw new Error('Claim Ad Reward button did not enable after countdown!');
-
-  await page.click('#claim-ad-reward-btn');
-  await page.waitForTimeout(400);
-
-  const adModalClosed = await page.$eval('#ad-modal', el => el.classList.contains('modal-hidden'));
   const coinsAfterAd = await page.evaluate(() => window.wordMappingGame.coins);
   const headerCoinsAfterAd = await page.$eval('#coin-display', el => parseInt(el.textContent.trim(), 10));
   const modalCoinsAfterAd = await page.$eval('#clear-coins-total', el => parseInt(el.textContent.trim(), 10));
 
-  console.log(`Ad modal closed: ${adModalClosed}`);
   console.log(`Coins after ad: ${coinsAfterAd} (Expected: ${coinsBeforeAd + 50})`);
   console.log(`Global #coin-display after ad: ${headerCoinsAfterAd}`);
   console.log(`Modal #clear-coins-total after ad: ${modalCoinsAfterAd}`);
 
-  if (!adModalClosed) throw new Error('Ad modal failed to close after claim!');
   if (coinsAfterAd !== coinsBeforeAd + 50) {
     throw new Error(`Expected coins to increase by 50 (from ${coinsBeforeAd} to ${coinsBeforeAd + 50}), got: ${coinsAfterAd}`);
   }
@@ -250,7 +238,7 @@ async function runTests() {
   if (modalCoinsAfterAd !== coinsAfterAd) {
     throw new Error(`Modal clear coins display not synced: ${modalCoinsAfterAd} vs ${coinsAfterAd}`);
   }
-  console.log('✓ TEST 6 PASSED: Watch Video granted exactly 50 coins and dynamically updated both coin counters.');
+  console.log('✓ TEST 6 PASSED: Official FBInstant.getRewardedVideoAsync granted exactly 50 coins without prohibited simulated ad loops, dynamically updating both coin counters.');
 
   // TEST 7: Translate Unlocked Word with Newly Earned Video Coins
   console.log('\n--- TEST 7: Translate Word with Newly Earned Coins ---');

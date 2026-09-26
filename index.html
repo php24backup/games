@@ -390,7 +390,7 @@
     <!-- GLOBAL FOOTER: Copyright & Legal License Terms -->
     <footer id="global-footer" class="game-global-footer">
       <div class="footer-content">
-        <span class="copyright-statement">&copy; 2026 Rambir Bhatiwal. All Rights Reserved.</span>
+        <span class="copyright-statement">&copy; 2026 Rambir. All Rights Reserved.</span>
         <span class="footer-divider">|</span>
         <a href="LICENSE.txt" target="_blank" rel="noopener noreferrer" class="license-terms-link">License &amp; Terms</a>
       </div>
@@ -407,17 +407,7 @@
   <!-- Main Game Engine Logic Script -->
   <script src="app.js"></script>
 
-  <!-- PWA & Offline Service Worker Registration -->
-  <script>
-    // Register Service Worker for PWA / offline support if running in an HTTP(S) origin and not restricted by sandboxing
-    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch((err) => {
-          // Gracefully ignore registration restrictions when running in sandboxed iframes
-          console.log('PWA Service Worker registration note:', err.message);
-        });
-      });
-    }
-  </script>
+  <!-- Meta Facebook Instant Games Engine Entrypoint & Boot Sequence -->
+  <script src="game.js"></script>
 </body>
 </html>
