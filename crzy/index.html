@@ -18,19 +18,10 @@
       document.head.appendChild(manifestLink);
     }
   </script>
-  <!-- Meta / Facebook Instant Games Official SDK -->
-  <script src="https://connect.facebook.net/en_US/fbinstant.7.1.js"></script>
   <!-- Platform Compliant CSS: 0 External Dependencies, 0 External Fonts -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="mock-ad-overlay" style="display: none;">
-      <div id="mock-ad-content">
-          <h2>Watching Advertisement...</h2>
-          <p id="mock-ad-timer">Please wait <span id="ad-time-left">5</span> seconds...</p>
-          <button id="mock-ad-close-btn" style="display: none;">Collect Reward & Close</button>
-      </div>
-  </div>
   <!-- Root Responsive Game Shell (Clamped for Mobile Portrait & Desktop Containment) -->
   <div id="game-app">
     
@@ -167,15 +158,15 @@
       <div class="modal-dialog ad-dialog">
         <div class="modal-header">
           <h2 class="modal-title">Sponsored Showcase</h2>
-          <button id="close-ad-btn" class="modal-close-btn modal-hidden" aria-label="Close Ad Showcase" style="display: none;" disabled>✕</button>
+          <button id="close-ad-btn" class="modal-close-btn" aria-label="Close Ad Showcase">✕</button>
         </div>
         <div class="modal-body ad-body">
           <div class="ad-video-mock">
             <div class="ad-screen">
               <div class="ad-pulse-circle">🎬</div>
-              <div id="ad-status-msg" class="ad-sponsor-text">Watching Advertisement...</div>
+              <div class="ad-sponsor-text">Simulating Partner Video Showcase...</div>
               <div class="ad-timer-countdown">Reward unlocks in: <span id="ad-seconds-left">4</span>s</div>
-              <div id="ad-progress-track" class="ad-progress-track">
+              <div class="ad-progress-track">
                 <div id="ad-progress-bar" class="ad-progress-fill"></div>
               </div>
             </div>
@@ -183,7 +174,7 @@
         </div>
         <div class="modal-footer">
           <button id="claim-ad-reward-btn" class="action-btn primary-btn" disabled>
-            Watching Video...
+            Please Wait...
           </button>
         </div>
       </div>

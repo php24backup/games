@@ -1,0 +1,265 @@
+Word,Level,Theme,Hindi (Devanagari),Telugu (Telugu Script),Chinese (Simplified Hanzi),Spanish (Español),French (Français),German (Deutsch),Arabic (العربية),Japanese (日本語),Russian (Русский),Portuguese (Português),Italian (Italiano),Korean (한국어)
+CAT,1,Animals & Pets,बिल्ली,పిల్లి,猫,gato,chat,katze,قطة,猫,кот,gato,gatto,고양이
+DOG,1,Animals & Pets,कुत्ता,కుక్క,狗,perro,chien,hund,كلب,犬,собака,cachorro,cane,개
+COW,1,Animals & Pets,गाय,ఆవు,牛,vaca,vache,kuh,بقرة,牛,корова,vaca,mucca,소
+PIG,1,Animals & Pets,सूअर,పంది,猪,cerdo,cochon,schwein,خنزير,豚,свинья,porco,maiale,돼지
+BAT,1,Animals & Pets,चमगादड़,గబ్బిలం,蝙蝠,murciélago,chauve-souris,fledermaus,خفاش,蝙蝠,летучая мышь,morcego,pipistrello,박쥐
+RAT,1,Animals & Pets,चूहा,ఎలుక,老鼠,rata,rat,ratte,جرذ,鼠,крыса,rato,ratto,쥐
+RAM,1,Animals & Pets,मेंढ़ा,పొట్టేలు,公羊,carnero,bélier,widder,كبش,雄羊,баран,carneiro,ariete,숫양
+OWL,1,Animals & Pets,उल्लू,గుడ్లగూబ,猫头鹰,búho,hibou,eule,بومة,梟,сова,coruja,gufo,올빼미
+SOW,1,Animals & Pets,मादा सूअर,ఆడపంది,母猪,cerda,truie,sau,خنزيرة,雌豚,свиноматка,porca,scrofa,암퇘지
+COD,1,Animals & Pets,कॉड मछली,కాడ్ చేప,鳕鱼,bacalao,morue,kabeljau,قد,鱈,треска,bacalhau,merluzzo,대구
+SKY,2,Nature & Elements,आकाश,ఆకాశం,天空,cielo,ciel,himmel,سماء,空,небо,céu,cielo,하늘
+SUN,2,Nature & Elements,सूरज,సూర్యుడు,太阳,sol,soleil,sonne,شمس,太陽,солнце,sol,sole,태양
+SEA,2,Nature & Elements,समुद्र,సముద్రం,大海,mar,mer,meer,بحر,海,море,mar,mare,바다
+AIR,2,Nature & Elements,हवा,గాలి,空气,aire,air,luft,هواء,空気,воздух,ar,aria,공기
+DEW,2,Nature & Elements,ओस,మంచు బిందువు,露水,rocío,rosée,tau,ندى,露,роса,orvalho,rugiada,이슬
+OAK,2,Nature & Elements,शाहबलूत,ఓక్ చెట్టు,橡树,roble,chêne,eiche,بلوط,オーク,дуб,carvalho,quercia,참나무
+EAR,2,Nature & Elements,कान,చెవి,耳朵,oreja,oreille,ohr,أذن,耳,ухо,orelha,orecchio,귀
+RAY,2,Nature & Elements,किरण,కిరణం,光线,rayo,rayon,strahl,شعاع,光線,луч,raio,raggio,광선
+YAK,2,Nature & Elements,याक,జడలబర్రె,牦牛,yak,yack,yak,ياك,ヤク,як,aque,yak,야크
+RED,2,Nature & Elements,लाल,ఎరుపు,红色,rojo,rouge,rot,أحمر,赤,красный,vermelho,rosso,빨간색
+BLUE,3,Colors & Crafts,नीला,నీలం,蓝色,azul,bleu,blau,أزرق,青,синий,azul,blu,파란색
+PINK,3,Colors & Crafts,गुलाबी,గులాబీ రంగు,粉色,rosa,rose,rosa,وردي,ピンク,розовый,rosa,rosa,분홍색
+GOLD,3,Colors & Crafts,सोना,బంగారం,金子,oro,or,gold,ذهب,金,золото,ouro,oro,금
+INK,3,Colors & Crafts,स्याही,సిరా,墨水,tinta,encre,tinte,حبر,インク,чернила,tinta,inchiostro,먹물
+PIN,3,Colors & Crafts,आलपिन,సూది,别针,alfiler,épingle,stecknadel,دبوس,ピン,булавка,alfinete,spillo,핀
+BIN,3,Colors & Crafts,पात्र,డబ్బా,储物箱,cubo,bac,behälter,صندوق,容器,контейнер,recipiente,cestino,상자
+TIN,3,Colors & Crafts,टिन,తగరము,锡,estaño,étain,zinn,قصدير,スズ,олово,estanho,stagno,주석
+LIP,3,Colors & Crafts,होंठ,పెదవి,嘴唇,labio,lèvre,lippe,شفة,唇,губа,lábio,labbro,입술
+KIN,3,Colors & Crafts,रिश्तेदार,బంధువులు,亲属,familia,famille,verwandtschaft,أقارب,親族,родня,parentes,parentela,친척
+BED,3,Colors & Crafts,बिस्तर,మంచం,床,cama,lit,bett,سرير,ベッド,кровать,cama,letto,침대
+KNIT,3,Colors & Crafts,बुनना,అల్లడం,编织,tejer,tricoter,stricken,حياكة,編む,вязать,tricotar,lavorare a maglia,뜨개질하다
+MILK,4,Kitchen & Foods,दूध,పాలు,牛奶,leche,lait,milch,حليب,牛乳,молоко,leite,latte,우유
+RICE,4,Kitchen & Foods,चावल,బియ్యం,米饭,arroz,riz,reis,أرز,米,рис,arroz,riso,쌀
+MEAT,4,Kitchen & Foods,मांस,మాంసం,肉,carne,viande,fleisch,لحم,肉,мясо,carne,carne,고기
+BEAN,4,Kitchen & Foods,सेम,చిక్కుడు,豆,frijol,haricot,bohne,فاصوليا,豆,фасоль,feijão,fagiolo,콩
+CAKE,4,Kitchen & Foods,मिष्ठान्न केक,కేక్,蛋糕,pastel,gâteau,kuchen,كعكة,ケーキ,торт,bolo,torta,케이크
+SOUP,4,Kitchen & Foods,सूप,సూప్,汤,sopa,soupe,suppe,حساء,スープ,суп,sopa,zuppa,수프
+EAT,4,Kitchen & Foods,खाना,తినడం,吃,comer,manger,essen,أكل,食べる,есть,comer,mangiare,먹다
+TEA,4,Kitchen & Foods,चाय,తేనీరు,茶,té,thé,tee,شاي,お茶,чай,chá,tè,차
+PEA,4,Kitchen & Foods,मटर,బఠానీ,豌豆,guisante,pois,erbse,بازلاء,エンドウ豆,горох,ervilha,pisello,완두콩
+NUT,4,Kitchen & Foods,मेवा,గింజ,坚果,nuez,noix,nuss,جوز,ナッツ,орех,noz,noce,견과
+ICE,4,Kitchen & Foods,बर्फ,మంచు,冰,hielo,glace,eis,ثلج,氷,лед,gelo,ghiaccio,얼음
+DOOR,5,Home & Living,दरवाज़ा,తలుపు,门,puerta,porte,tür,باب,ドア,дверь,porta,porta,문
+ROOM,5,Home & Living,कमरा,గది,房间,habitación,chambre,zimmer,غرفة,部屋,комната,quarto,stanza,방
+DESK,5,Home & Living,मेज़,డెస్క్,书桌,escritorio,bureau,schreibtisch,مكتب,机,письменный стол,escrivaninha,scrivania,책상
+LAMP,5,Home & Living,लैंप,దీపం,台灯,lámpara,lampe,lampe,مصباح,ランプ,лампа,lâmpada,lampada,램프
+SOFA,5,Home & Living,सोफा,సోఫా,沙发,sofá,canapé,sofa,أريكة,ソファ,диван,sofá,divano,소파
+PAN,5,Home & Living,कड़ाही,పెనం,平底锅,sartén,poêle,pfanne,مقلاة,フライパン,сковорода,frigideira,padella,팬
+BEAM,5,Home & Living,बीम,బీమ్,横梁,viga,poutre,balken,شعاع,梁,балка,viga,trave,들보
+CORE,5,Home & Living,मुख्य भाग,ప్రధాన భాగం,核心,núcleo,noyau,kern,لب,芯,ядро,núcleo,nucleo,핵심
+ROBE,5,Home & Living,चोगा,గౌను,长袍,túnica,robe,robe,رداء,ローブ,халат,roupão,vestaglia,로브
+CORD,5,Home & Living,डोरी (रस्सी),తాడు,绳子,cuerda,corde,schnur,حبل,ひも,шнур,cordão,corda,코드
+DREAM,5,Home & Living,सपना,కల,梦,sueño,rêve,traum,حلم,夢,мечта,sonho,sogno,꿈
+MASK,5,Home & Living,मुखौटा,ముసుగు,面具,máscara,masque,maske,قناع,仮面,маска,máscara,maschera,가면
+SHIP,6,Travel & Vehicles,जहाज़,ఓడ,轮船,barco,navire,schiff,سفينة,船,корабль,navio,nave,배
+BOAT,6,Travel & Vehicles,नौका,పడవ,小船,bote,bateau,boot,قارب,ボート,лодка,barco,barca,보트
+ROAD,6,Travel & Vehicles,सड़क,రోడ్డు,道路,carretera,route,straße,طريق,道路,дорога,estrada,strada,도로
+BIKE,6,Travel & Vehicles,साइकिल,సైకిల్,自行车,bicicleta,vélo,fahrrad,دراجة,自転車,велосипед,bicicleta,bicicletta,자전거
+CART,6,Travel & Vehicles,गाड़ी,బండి,手推车,carro,chariot,karren,عربة,荷車,телега,carroça,carro,수레
+CAR,6,Travel & Vehicles,मोटरगाड़ी,కారు,汽车,coche,voiture,auto,سيارة,車,машина,carro,auto,자동차
+DOT,6,Travel & Vehicles,बिंदु,చుక్క,圆点,punto,point,punkt,نقطة,点,точка,ponto,punto,점
+CAB,6,Travel & Vehicles,टैक्सी,టాక్సీ,出租车,taxi,taxi,taxi,تاكسي,タクシー,такси,táxi,taxi,택시
+TREK,6,Travel & Vehicles,यात्रा,ప్రయాణం,徒步旅行,caminata,randonnée,wanderung,رحلة شاقة,トレッキング,поход,caminhada,trekking,트레킹
+SEAT,6,Travel & Vehicles,सीट (आसन),సీటు,座位,asiento,siège,sitz,مقعد,座席,сиденье,assento,sedile,좌석
+REST,6,Travel & Vehicles,आराम,విశ్రాంతి,休息,descanso,repos,ruhe,راحة,休息,отдых,descanso,riposo,휴식
+BOOK,6,Travel & Vehicles,किताब,పుస్తకం,书,libro,livre,buch,كتاب,本,книга,livro,libro,책
+TREE,7,Forest & Plants,पेड़,చెట్టు,树,árbol,arbre,baum,شجرة,木,дерево,árvore,albero,나무
+LEAF,7,Forest & Plants,पत्ता,ఆకు,树叶,hoja,feuille,blatt,ورقة شجر,葉,лист,folha,foglia,나뭇잎
+ROOT,7,Forest & Plants,जड़,వేరు,根,raíz,racine,wurzel,جذر,根,корень,raiz,radice,뿌리
+BARK,7,Forest & Plants,छाल,బెరడు,树皮,corteza,écorce,rinde,لحاء,樹皮,кора,casca,corteccia,나무껍질
+SEED,7,Forest & Plants,बीज,విత్తనం,种子,semilla,graine,samen,بذرة,種,семя,semente,seme,씨앗
+BEE,7,Forest & Plants,मधुमक्खी,తేనెటీగ,蜜蜂,abeja,abeille,biene,نحلة,蜂,пчела,abelha,ape,꿀벌
+ROOF,7,Forest & Plants,छत,పైకప్పు,屋顶,techo,toit,dach,سقف,屋根,крыша,telhado,tetto,지붕
+DEER,7,Forest & Plants,हिरण,జింక,鹿,ciervo,cerf,hirsch,غزال,鹿,олень,veado,cervo,사슴
+BROOK,7,Forest & Plants,छोटी नदी या नाला या झरना,చిన్న వాగు,小溪,arroyo,ruisseau,bach,جدول,小川,ручей,riacho,ruscello,개울
+REED,7,Forest & Plants,नरकट या सरकंडा,తుంగ,芦苇,caña,roseau,schilf,قصب,葦,тростник,junco,canna,갈대
+BOAR,7,Forest & Plants,जंगली सूअर,అడవి పంది,野猪,jabalí,sanglier,wildschwein,خنزير بري,猪,кабан,javali,cinghiale,멧돼지
+ROOK,7,Forest & Plants,काला कौआ,నల్ల కాకి,乌鸦,grajo,corbeau,saatkrähe,غراب الزرع,ミヤマガラス,грач,gralha,corvo,떼까마귀
+RAFT,7,Forest & Plants,बेड़ा या तैरने वाला लकड़ी का बंधन,తెప్ప,木筏,balsa,radeau,floß,طوف,筏,плот,balsa,zattera,뗏목
+RAIN,8,Weather & Sky,बारिश या वर्षा,వర్షం,雨,lluvia,pluie,regen,مطر,雨,дождь,chuva,pioggia,비
+COLD,8,Weather & Sky,ठंड या शीत,చలి,寒冷,frío,froid,kälte,برد,寒い,холод,frio,freddo,추위
+WIND,8,Weather & Sky,हवा,గాలి,风,viento,vent,wind,ريح,風,ветер,vento,vento,바람
+HAIL,8,Weather & Sky,ओला,వడగళ్ళు,冰雹,granizo,grêle,hagel,برد,雹,град,granizo,grandine,우박
+BOWL,8,Weather & Sky,कटोरा,గిన్నె,碗,tazón,bol,schüssel,وعاء,ボウル,миска,tigela,ciotola,그릇
+SAIL,8,Weather & Sky,पाल या नाव चलाना,తెరచాప,帆,vela,voile,segel,شراع,帆,парус,vela,vela,돛
+RAIL,8,Weather & Sky,ट्रेन की पटरी,రైలు పట్టా,铁轨,riel,rail,schiene,سكة,レール,рельс,trilho,binario,철로
+ASH,8,Weather & Sky,राख,బూడిద,灰烬,ceniza,cendre,asche,رماد,灰,пепел,cinza,cenere,재
+WINDY,8,Weather & Sky,हवादार,గాలిగా ఉన్న,多风的,ventoso,venteux,windig,عاصف,風が強い,ветреный,ventoso,ventoso,바람부는
+DOWN,8,Weather & Sky,नीचे,కింద,向下,abajo,bas,unten,أسفل,下,вниз,baixo,giù,아래
+WILD,8,Weather & Sky,जंगली,అడవి,野生,salvaje,sauvage,wild,بري,野生,дикий,selvagem,selvaggio,야생
+CROW,8,Weather & Sky,कौआ,కాకి,乌鸦,cuervo,corbeau,krähe,غراب,烏,ворона,corvo,corvo,까마귀
+DIAL,8,Weather & Sky,डायल या घुमाने वाला चक्र,డయల్,表盘,marcar,cadran,zifferblatt,قرص,文字盤,циферблат,mostrador,quadrante,다이얼
+STAR,9,Cosmos & Science,तारा,నక్షత్రం,星星,estrella,étoile,stern,نجم,星,звезда,estrela,stella,별
+MOON,9,Cosmos & Science,चाँद या चंद्रमा,చంద్రుడు,月亮,luna,lune,mond,قمر,月,луна,lua,luna,달
+MARS,9,Cosmos & Science,मंगल ग्रह,అంగారక గ్రహం,火星,marte,mars,mars,المريخ,火星,марс,marte,marte,화성
+ATOM,9,Cosmos & Science,परमाणु,పరమాణువు,原子,átomo,atome,atom,ذرة,原子,атом,átomo,atomo,원자
+LIGHT,9,Cosmos & Science,प्रकाश,వెలుగు,光,luz,lumière,licht,ضوء,光,свет,luz,luce,빛
+WAVE,9,Cosmos & Science,लहर या तरंग,అల,波浪,ola,vague,welle,موجة,波,волна,onda,onda,파도
+STORM,9,Cosmos & Science,तूफ़ान,తుఫాను,风暴,tormenta,tempête,sturm,عاصفة,嵐,буря,tempestade,tempesta,폭풍
+ORB,9,Cosmos & Science,गोला,గోళం,球体,orbe,orbe,kugel,جرم,宝珠,сфера,orbe,globo,구체
+AURA,9,Cosmos & Science,आभा,కాంతివలయం,光环,aura,aura,aura,هالة,オーラ,аура,aura,aura,아우라
+OHM,9,Cosmos & Science,ओम,ఓమ్,欧姆,ohmio,ohm,ohm,أوم,オーム,ом,ohm,ohm,옴
+MOTION,9,Cosmos & Science,गति,చలనం,运动,movimiento,mouvement,bewegung,حركة,運動,движение,movimento,movimento,동작
+ION,9,Cosmos & Science,आयन (आयनीकृत कण),అయాన్,离子,ión,ion,ion,أيون,イオン,ион,íon,ione,이온
+MOTOR,9,Cosmos & Science,मोटर (इलेक्ट्रिक मोटर),మోటారు,电动机,motor,moteur,motor,محرك,モーター,мотор,motor,motore,모터
+SOAR,9,Cosmos & Science,ऊँची उड़ान भरना,ఎగరడం,翱翔,elevarse,planer,schweben,تحليق,飛翔する,парить,planar,svolazzare,치솟다
+EARTH,10,Master Expedition,धरती या पृथ्वी,భూమి,地球,tierra,terre,erde,أرض,地球,земля,terra,terra,지구
+PLANET,10,Master Expedition,ग्रह,గ్రహం,行星,planeta,planète,planet,كوكب,惑星,планета,planeta,pianeta,행성
+SILVER,10,Master Expedition,चाँदी,వెండి,银色,plata,argent,silber,فضة,銀,серебро,prata,argento,은
+GOLDEN,10,Master Expedition,सुनहरा,బంగారు,金色的,dorado,doré,golden,ذهبي,金色,золотой,dourado,dorato,황금빛
+WONDER,10,Master Expedition,आश्चर्य,ఆశ్చర్యం,惊奇,maravilla,merveille,wunder,عجيبة,驚異,чудо,maravilha,meraviglia,경이
+GALAXY,10,Master Expedition,आकाशगंगा,ఆకాశగంగ,星系,galaxia,galaxie,galaxie,مجرة,銀河,галактика,galáxia,galassia,은하
+SOLAR,10,Master Expedition,सौर (सूर्य से संबंधित),సౌర,太阳的,solar,solaire,solar,شمسي,太陽の,солнечный,solar,solare,태양의
+HEN,10,Master Expedition,मुर्गी,కోడి,母鸡,gallina,poule,henne,دجاجة,雌鶏,курица,galinha,gallina,암탉
+GIANT,10,Master Expedition,विशाल,విశాలమైన,巨大的,gigante,géant,riese,عملاق,巨人,великан,gigante,gigante,거인
+LAND,10,Master Expedition,ज़मीन या भूमि,నేల,陆地,tierra,terre,land,أرض,土地,суша,terra,terra,땅
+ISLE,10,Master Expedition,द्वीप,ద్వీపం,岛屿,isla,île,insel,جزيرة,小島,островок,ilha,isola,섬
+LADDER,10,Master Expedition,सीढ़ी,నిచ్చెన,梯子,escalera,échelle,leiter,سلم,梯子,лестница,escada,scala,사다리
+ENTER,10,Master Expedition,प्रवेश करना,ప్రవేశించడం,进入,entrar,entrer,eintreten,دخول,入る,войти,entrar,entrare,들어가다
+LEAP,10,Master Expedition,छलांग,దూకడం,跳跃,salto,saut,sprung,قفزة,跳躍,прыжок,salto,balzo,도약
+LANE,10,Master Expedition,वीथी या गली,దారి,小巷,carril,ruelle,gasse,ممر,小道,переулок,faixa,vicolo,골목길
+FISH,11,Ocean & Deep Sea,मछली,చేప,鱼,pez,poisson,fisch,سمكة,魚,рыба,peixe,pesce,물고기
+REEF,11,Ocean & Deep Sea,प्रवाल भित्ति या समुद्री चट्टान,పగడపు దిబ్బ,珊瑚礁,arrecife,récif,riff,شعب مرجانية,礁,риф,recife,scogliera,암초
+TIDE,11,Ocean & Deep Sea,ज्वार-भाटा,ఆటుపోట్లు,潮汐,marea,marée,gezeiten,مد وجزر,潮,прилив,maré,marea,조수
+TAIL,11,Ocean & Deep Sea,पूंछ,తోక,尾巴,cola,queue,schwanz,ذيل,尾,хвост,cauda,coda,꼬리
+SAFE,11,Ocean & Deep Sea,सुरक्षित,సురక్షితమైన,安全的,seguro,sûr,sicher,آمن,安全な,безопасный,seguro,sicuro,안전한
+LIFE,11,Ocean & Deep Sea,जीवन,జీవితం,生命,vida,vie,leben,حياة,命,жизнь,vida,vita,생명
+FAST,11,Ocean & Deep Sea,तेज़,వేగంగా,快速的,rápido,rapide,schnell,سريع,速い,быстрый,rápido,veloce,빠른
+DIVE,11,Ocean & Deep Sea,गोता लगाना,మునక వేయడం,潜水,buceo,plonger,tauchen,غوص,潜水,нырять,mergulho,tuffo,다이빙
+WATER,11,Ocean & Deep Sea,पानी,నీరు,水,agua,eau,wasser,ماء,水,вода,água,acqua,물
+WADE,11,Ocean & Deep Sea,पानी में चलना,నీటిలో నడవడం,涉水,vadear,patauger,waten,خوض في الماء,浅瀬を渡る,идти вброд,vau,guadare,헤치며 걷다
+RIDE,11,Ocean & Deep Sea,सवारी करना,సవారీ చేయడం,骑行,paseo,balade,fahrt,ركوب,乗る,поездка,passeio,corsa,타기
+EAST,11,Ocean & Deep Sea,पूरब या पूर्व दिशा,తూర్పు,东方,este,est,osten,شرق,東,восток,leste,est,동쪽
+FEAST,11,Ocean & Deep Sea,दावत,విందు,盛宴,banquete,festin,festmahl,وليمة,ごちそう,пир,banquete,banchetto,연회
+SONG,12,Music & Harmony,गीत,పాట,歌曲,canción,chanson,lied,أغنية,歌,песня,canção,canzone,노래
+TUNE,12,Music & Harmony,धुन,ధుని,曲调,melodía,mélodie,melodie,لحن,旋律,мелодия,melodia,melodia,곡조
+BEAT,12,Music & Harmony,ताल,లయ,节拍,ritmo,battement,takt,إيقاع,拍子,бит,batida,battito,비트
+HORN,12,Music & Harmony,सींग या भोंपू,కొమ్ము,号角,cuerno,cor,horn,بوق,ホルン,рог,buzina,corno,호른
+DRUM,12,Music & Harmony,ढोलक,డప్పు,鼓,tambor,tambour,trommel,طبلة,太鼓,барабан,tambor,tamburo,북
+SOLO,12,Music & Harmony,एकल,ఒంటరిగా,独奏,solo,solo,solo,عزف منفرد,独奏,соло,solo,assolo,솔로
+NOTE,12,Music & Harmony,सुर,స్వరం,音符,nota,note,note,نوتة,音符,нота,nota,nota,음표
+TONE,12,Music & Harmony,आवाज़ का उतार-चढ़ाव,స్వరస్థాయి,音调,tono,ton,ton,نغمة,音色,тон,tom,tono,어조
+RUN,12,Music & Harmony,दौड़ना,పరుగెత్తడం,奔跑,correr,courir,laufen,ركض,走る,бег,correr,correre,달리다
+HEART,12,Music & Harmony,दिल या हृदय,హృదయం,心脏,corazón,cœur,herz,قلب,心臓,сердце,coração,cuore,심장
+HEAR,12,Music & Harmony,सुनना,వినడం,听见,oír,entendre,hören,سمع,聞く,слышать,ouvir,sentire,듣다
+RANGE,12,Music & Harmony,सीमा,పరిధి,范围,rango,portée,bereich,مدى,音域,диапазон,alcance,gamma,음역
+ANGEL,12,Music & Harmony,देवदूत,దేవదూత,天使,ángel,ange,engel,ملاك,天使,ангел,anjo,angelo,천사
+BALL,13,Sports & Action,गेंद,బంతి,球,pelota,balle,ball,كرة,ボール,мяч,bola,palla,공
+PLAY,13,Sports & Action,खेलना,ఆడటం,玩耍,jugar,jouer,spielen,لعب,遊ぶ,играть,jogar,giocare,놀다
+GOAL,13,Sports & Action,लक्ष्य,లక్ష్యం,目标,gol,but,tor,هدف,ゴール,гол,gol,gol,골
+RACE,13,Sports & Action,दौड़,పరుగు పందెం,赛跑,carrera,course,rennen,سباق,レース,гонка,corrida,corsa,경주
+SURF,13,Sports & Action,जलक्रीड़ा,సర్ఫింగ్,冲浪,surf,surf,surfen,ركوب الأمواج,波乗り,серфинг,surfe,surf,서핑
+TEAM,13,Sports & Action,टीम या समूह,జట్టు,团队,equipo,équipe,team,فريق,チーム,команда,equipe,squadra,팀
+CARE,13,Sports & Action,देखभाल,శ్రద్ధ,关心,cuidado,soin,pflege,رعاية,気遣い,забота,cuidado,cura,돌봄
+ROAR,13,Sports & Action,दहाड़ या गर्जन,గర్జన,咆哮,rugido,rugissement,brüllen,زئير,咆哮,рёв,rugido,ruggito,포효
+BAY,13,Sports & Action,खाड़ी,బే,海湾,bahía,baie,bucht,خليج,湾,залив,baía,baia,만
+FAME,13,Sports & Action,प्रसिद्धि,కీర్తి,名声,fama,gloire,ruhm,شهرة,名声,слава,fama,fama,명성
+RAG,13,Sports & Action,चिथड़ा,చిత్తడి గుడ్డ,抹布,trapo,chiffon,lappen,خرقة,ぼろ布,тряпка,trapo,straccio,걸레
+LOG,13,Sports & Action,लकड़ी का लट्ठा,చెక్క దుంగ,原木,tronco,bûche,holzklotz,جذع,丸太,бревно,tronco,tronco,통나무
+STEAM,13,Sports & Action,भाप या वाष्प,ఆవిరి,蒸汽,vapor,vapeur,dampf,بخار,蒸気,пар,vapor,vapore,증기
+GRACE,13,Sports & Action,शालीनता या कृपा,అందం,优雅,gracia,grâce,anmut,نعمة,優美,грация,graça,grazia,우아함
+KING,14,Castle & Kingdom,राजा,రాజు,国王,rey,roi,könig,ملك,王,король,rei,re,왕
+CROWN,14,Castle & Kingdom,मुकुट,కిరీటం,王冠,corona,couronne,krone,تاج,王冠,корона,coroa,corona,왕관
+TOWER,14,Castle & Kingdom,मीनार,మీనార,塔楼,torre,tour,turm,برج,塔,башня,torre,torre,탑
+GATE,14,Castle & Kingdom,फाटक या द्वार,ద్వారం,城门,puerta,porte,tor,بوابة,門,ворота,portão,cancello,문
+HALL,14,Castle & Kingdom,हॉल या सभागार,హాల్,大厅,salón,salle,saal,قاعة,ホール,зал,salão,sala,홀
+RING,14,Castle & Kingdom,अंगूठी,ఉంగరం,戒指,anillo,bague,ring,خاتم,指輪,кольцо,anel,anello,반지
+IRON,14,Castle & Kingdom,लोहा,ఇనుము,铁,hierro,fer,eisen,حديد,鉄,железо,ferro,ferro,철
+BELL,14,Castle & Kingdom,घंटी,గంట,铃,campana,cloche,glocke,جرس,鐘,колокол,sino,campana,종
+WALL,14,Castle & Kingdom,दीवार,గోడ,城墙,muro,mur,mauer,جدار,壁,стена,muro,muro,벽
+CORN,14,Castle & Kingdom,मक्का,మొక్కజొన్న,玉米,maíz,maïs,mais,ذرة,トウモロコシ,кукуруза,milho,mais,옥수수
+GOWN,14,Castle & Kingdom,गाउन या शाही पोशाक,గౌను,礼服,vestido,robe,kleid,ثوب,ガウン,платье,vestido,abito,가운
+TALE,14,Castle & Kingdom,कहानी,కథ,故事,cuento,conte,märchen,حكاية,物語,сказка,conto,racconto,이야기
+TALL,14,Castle & Kingdom,लंबा,పొడవైన,高大的,alto,grand,hoch,طويل,背が高い,высокий,alto,alto,키 큰
+COAT,14,Castle & Kingdom,कोट या जैकेट,కోటు,外套,abrigo,manteau,mantel,معطف,コート,пальто,casaco,cappotto,외투
+APPLE,15,Fruits & Orchard,सेब,సేబు,苹果,manzana,pomme,apfel,تفاحة,りんご,яблоко,maçã,mela,사과
+BERRY,15,Fruits & Orchard,बेरी या बेरी के फल,బెర్రీ,浆果,baya,baie,beere,توت,ベリー,ягода,baga,bacca,베리
+PEAR,15,Fruits & Orchard,नाशपाती,బేరిపండు,梨,pera,poire,birne,كمثرى,梨,груша,pêra,pera,배
+PLUM,15,Fruits & Orchard,आलूबुखारा,ప్లమ్,李子,ciruela,prune,pflaume,برقوق,プラム,слива,ameixa,prugna,자두
+LIME,15,Fruits & Orchard,नींबू,నిమ్మకాయ,青柠,lima,citron vert,limette,ليمون أخضر,ライム,лайм,lima,lime,라임
+ROSE,15,Fruits & Orchard,गुलाब,గులాబీ,玫瑰,rosa,rose,rose,وردة,薔薇,роза,rosa,rosa,장미
+ELM,15,Fruits & Orchard,एल्म का पेड़,ఎల్మ్ చెట్టు,榆树,olmo,orme,ulme,دردار,楡,вяз,olmo,olmo,느릅나무
+PEEL,15,Fruits & Orchard,छिलका उतारना,తొక్క తీయడం,削皮,pelar,peler,schälen,قشرة,皮をむく,кожура,casca,buccia,껍질
+REAP,15,Fruits & Orchard,फसल काटना,పంట కోయడం,收割,cosechar,récolter,ernten,حصد,収穫する,жать,colher,mietere,수확하다
+ROSY,15,Fruits & Orchard,गुलाबी,గులాబీ రంగులో,红润的,sonrosado,rosé,rosig,وردي,バラ色の,розовый,rosado,roseo,장밋빛의
+RYE,15,Fruits & Orchard,राई,రై ధాన్యం,黑麦,centeno,seigle,roggen,جاودار,ライ麦,рожь,centeio,segale,호밀
+MULE,15,Fruits & Orchard,खच्चर,కంచరగాడిద,骡子,mula,mule,maultier,بغل,ラバ,мул,mula,mulo,노새
+REALM,15,Fruits & Orchard,क्षेत्र,ప్రాంతం,领域,reino,royaume,reich,مملكة,王国,королевство,reino,regno,영역
+PLUME,15,Fruits & Orchard,पंख,ఈక,羽毛,pluma,plume,feder,ريشة,羽飾り,плюмаж,pluma,piuma,깃털
+TIGER,16,Jungle Safari,बाघ,పులి,老虎,tigre,tigre,tiger,نمر,虎,тигр,tigre,tigre,호랑이
+ZEBRA,16,Jungle Safari,ज़ेबरा,జీబ్రా,斑马,cebra,zèbre,zebra,حمار وحشي,シマウマ,зебра,zebra,zebra,얼룩말
+MONKEY,16,Jungle Safari,बंदर,కోతి,猴子,mono,singe,affe,قرد,猿,обезьяна,macaco,scimmia,원숭이
+SNAKE,16,Jungle Safari,साँप,పాము,蛇,serpiente,serpent,schlange,ثعبان,蛇,змея,cobra,serpente,뱀
+LION,16,Jungle Safari,शेर,సింహం,狮子,león,lion,löwe,أسد,ライオン,лев,leão,leone,사자
+FAUN,16,Jungle Safari,वन देवता,అడవి దేవత,牧神,fauno,faune,faun,فون,フォーン,фавн,fauno,fauno,파운
+BEAR,16,Jungle Safari,भालू,ఎలుగుబంటి,熊,oso,ours,bär,دب,熊,медведь,urso,orso,곰
+FAUNA,16,Jungle Safari,जीव-जंतु,జంతుజాలం,动物群,fauna,faune,fauna,حيوانات,動物相,фауна,fauna,fauna,동물군
+SNAIL,16,Jungle Safari,घोंघा,నత్త,蜗牛,caracol,escargot,schnecke,حلزون,カタツムリ,улитка,caracol,chiocciola,달팽이
+BEAK,16,Jungle Safari,चोंच,ముక్కు,鸟喙,pico,bec,schnabel,منقار,くちばし,клюв,bico,becco,부리
+GREEN,16,Jungle Safari,हरा,ఆకుపచ్చ,绿色,verde,vert,grün,أخضر,緑,зеленый,verde,verde,초록색
+BONE,16,Jungle Safari,हड्डी,ఎముక,骨头,hueso,os,knochen,عظم,骨,кость,osso,osso,뼈
+ZONE,16,Jungle Safari,क्षेत्र,ప్రాంతం,区域,zona,zone,zone,منطقة,地帯,зона,zona,zona,구역
+GEAR,16,Jungle Safari,उपकरण,పరికరాలు,装备,equipo,équipement,ausrüstung,عتاد,装備,снаряжение,equipamento,ingranaggio,장비
+EYE,16,Jungle Safari,आँख,కన్ను,眼睛,ojo,œil,auge,عين,目,глаз,olho,occhio,눈
+SPRING,17,Time & Seasons,वसंत ऋतु,వసంత ఋతువు,春天,primavera,printemps,frühling,ربيع,春,весна,primavera,primavera,봄
+SUMMER,17,Time & Seasons,गर्मी,వేసవి,夏天,verano,été,sommer,صيف,夏,лето,verão,estate,여름
+AUTUMN,17,Time & Seasons,पतझड़,శరదృతువు,秋天,otoño,automne,herbst,خريف,秋,осень,outono,autunno,가을
+WINTER,17,Time & Seasons,सर्दी,శీతాకాలం,冬天,invierno,hiver,winter,شتاء,冬,зима,inverno,inverno,겨울
+CLOCK,17,Time & Seasons,घड़ी,గడియారం,时钟,reloj,horloge,uhr,ساعة,時計,часы,relógio,orologio,시계
+NIGHT,17,Time & Seasons,रात,రాత్రి,夜晚,noche,nuit,nacht,ليل,夜,ночь,noite,notte,밤
+WIN,17,Time & Seasons,जीत,గెలుపు,获胜,ganar,gagner,gewinnen,فوز,勝つ,побеждать,vencer,vincere,이기다
+COIN,17,Time & Seasons,सिक्का,నాణెం,硬币,moneda,pièce,münze,عملة معدنية,硬貨,монета,moeda,moneta,동전
+LOCK,17,Time & Seasons,ताला,తాళం,锁,cerradura,serrure,schloss,قفل,錠,замок,fechadura,serratura,자물쇠
+NET,17,Time & Seasons,जाल,వల,渔网,red,filet,netz,شبكة,網,сеть,rede,rete,그물
+PRIME,17,Time & Seasons,मुख्य समय,ప్రధాన సమయం,黄金时期,primero,premier,prima,رئيسي,主要な,главный,principal,principale,주요한
+ONCE,17,Time & Seasons,एक बार,ఒకసారి,一次,una vez,une fois,einmal,مرة واحدة,一度,однажды,uma vez,una volta,한 번
+RIME,17,Time & Seasons,पाला,మంచు పొర,霜,escarcha,givre,reif,صقيع,樹氷,иней,geada,brina,서리
+GLINT,17,Time & Seasons,चमक,మెరుపు,闪光,destello,lueur,schimmer,بريق,きらめき,блеск,brilho,bagliore,반짝임
+ECHO,17,Time & Seasons,गूँज,ప్రతిధ్వని,回声,eco,écho,echo,صدى,木霊,эхо,eco,eco,메아리
+MOUNT,18,Mountain Peak,पर्वत,పర్వతం,山峰,monte,mont,berg,جبل,山,гора,monte,monte,산
+CLIFF,18,Mountain Peak,खड़ी चट्टान,కొండచరియ,悬崖,acantilado,falaise,klippe,منحدر صخري,崖,утес,penhasco,scogliera,절벽
+RIDGE,18,Mountain Peak,पहाड़ी चोटी या शिखर,పర్వత శ్రేణి,山脊,cresta,crête,grat,سلسلة جبلية,尾根,хребет,crista,cresta,산등성이
+SLOPE,18,Mountain Peak,ढलान,వాలు,斜坡,pendiente,pente,hang,منحدر,斜面,склон,encosta,pendenza,경사면
+CANYON,18,Mountain Peak,कंदरा या गहरी घाटी,లోయ,峡谷,cañón,canyon,schlucht,أخدود,峡谷,каньон,cânion,canyon,협곡
+VALLEY,18,Mountain Peak,उपत्यका या घाटी,పచ్చని లోయ,山谷,valle,vallée,tal,وادي,谷,долина,vale,valle,계곡
+DEEP,18,Mountain Peak,गहरा,లోతైన,深邃的,profundo,profond,tief,عميق,深い,глубокий,profundo,profondo,깊은
+OPEN,18,Mountain Peak,खुला,తెరిచి ఉన్న,开阔的,abierto,ouvert,offen,مفتوح,開いた,открытый,aberto,aperto,열린
+POLE,18,Mountain Peak,खंभा,స్తంభం,杆子,polo,pôle,pol,قطب,極,полюс,polo,polo,기둥
+DEN,18,Mountain Peak,मांद या बिल,గుహ,兽穴,guarida,tanière,höhle,عرين,巣穴,логово,toca,tana,굴
+VAN,18,Mountain Peak,वैन या बस,వ్యాన్,面包车,furgoneta,fourgonnette,lieferwagen,شاحنة صغيرة,バン,фургон,van,furgone,승합차
+LODGE,18,Mountain Peak,पर्वतीय कुटीर या विश्रामगृह,విశ్రాంతి గృహం,山庄,cabaña,gîte,hütte,نزل,ロッジ,домик,chalé,rifugio,오두막
+LIFT,18,Mountain Peak,स्की लिफ्ट या केबल कार,లిఫ్ట్,缆车,elevar,lever,heben,رفع,持ち上げる,поднимать,levantar,sollevare,들어올리다
+LAVA,18,Mountain Peak,लावा या ज्वालामुखीय द्रव,లావా,熔岩,lava,lave,lava,حمم بركانية,溶岩,лава,lava,lava,용암
+PONY,18,Mountain Peak,टट्टू या छोटा घोड़ा,పొట్టి గుర్రం,小马,poni,poney,pony,مهر,子馬,пони,pônei,pony,조랑말
+CHEST,19,Treasure Island,संदूक या बक्सा,పెట్టె,宝箱,cofre,coffre,truhe,صندوق الكنز,宝箱,сундук,baú,forziere,상자
+PIRATE,19,Treasure Island,समुद्री डाकू,సముద్రపు దొంగ,海盗,pirata,pirate,pirat,قرصان,海賊,пират,pirata,pirata,해적
+PEARL,19,Treasure Island,मोती,ముత్యం,珍珠,perla,perle,perle,لؤلؤة,真珠,жемчужина,pérola,perla,진주
+ANCHOR,19,Treasure Island,लंगर,లంగరు,铁锚,ancla,ancre,anker,مرساة,錨,якорь,âncora,ancora,닻
+CARD,19,Treasure Island,नक्शा या ताश का पत्ता,కార్డు,卡片,carta,carte,karte,بطاقة,カード,карта,carta,carta,카드
+HEAT,19,Treasure Island,ताप या गर्मी,వేడి,酷热,calor,chaleur,hitze,حرارة,熱,жара,calor,calore,열기
+RICHES,19,Treasure Island,अतुल धन या अत्यधिक संपत्ति,సిరిసంపదలు,财富,riquezas,richesses,reichtum,ثروات,富,богатства,riquezas,ricchezze,부
+STEAL,19,Treasure Island,चुराना,దొంగిలించడం,偷窃,robar,voler,stehlen,سرقة,盗む,красть,roubar,rubare,훔치다
+TAVERN,19,Treasure Island,सराय या शराबख़ाना,సత్రం,酒馆,taberna,taverne,taverne,حانة,酒場,таверна,taverna,taverna,선술집
+PIER,19,Treasure Island,घाट,రేవు,码头,muelle,jetée,steg,رصيف الميناء,桟橋,пирс,cais,molo,부두
+STEEL,19,Treasure Island,इस्पात या स्टील,ఉక్కు,钢铁,acero,acier,stahl,فولاذ,鋼鉄,сталь,aço,acciaio,강철
+VAST,19,Treasure Island,विशाल,విశాలమైన,辽阔的,vasto,vaste,weit,واسع,広大な,обширный,vasto,vasto,광대한
+HORDE,19,Treasure Island,झुंड या समूह,గుంపు,部落,horda,horde,horde,حشد,群勢,орда,horda,orda,무리
+CHIP,19,Treasure Island,स्वर्ण खंड या टुकड़ा,ముక్క,碎片,ficha,jeton,chip,شريحة,チップ,фишка,ficha,fiche,칩
+HOLD,19,Treasure Island,जहाज का तलघर या भंडारण क्षेत्र,ఓడ అడుగుభాగం,船舱,bodega,cale,frachthalt,عنبر السفينة,船倉,трюм,porão,stiva,선창
+VICTOR,20,Grand Master Champion,विजेता ,విజేత,胜利者,vencedor,vainqueur,sieger,منتصر,勝者,победитель,vencedor,vincitore,승리자
+TROPHY,20,Grand Master Champion,विजय-प्रतीक,విజయ చిహ్నం,奖杯,trofeo,trophée,trophäe,كأس البطولة,トロフィー,трофей,troféu,trofeo,트로피
+HERO,20,Grand Master Champion,नायक,వీరుడు,英雄,héroe,héros,held,بطل,英雄,герой,herói,eroe,영웅
+BRAVE,20,Grand Master Champion,साहसी या बहादुर,ధైర్యవంతుడు,勇敢的,valiente,brave,mutig,شجاع,勇敢な,храбрый,corajoso,coraggioso,용감한
+LEGEND,20,Grand Master Champion,अमर गाथा,పురాణ పురుషుడు,传奇,leyenda,légende,legende,أسطورة,伝説,легенда,lenda,leggenda,전설
+HEROIC,20,Grand Master Champion,वीरतापूर्ण,వీరోచితమైన,英勇的,heroico,héroïque,heroisch,بطولي,英雄的,героический,heroico,eroico,영웅적인
+ARENA,20,Grand Master Champion,रणभूमि या अखाड़ा,రణరంగం,竞技场,arena,arène,arena,حلبة,競技場,арена,arena,arena,투기장
+BRAVO,20,Grand Master Champion,शाबाश,శభాష్,喝彩,bravo,bravo,bravo,أحسنت,ブラボー,браво,bravo,bravo,브라보
+GOVERN,20,Grand Master Champion,शासन करना,పాలించడం,统治,gobernar,gouverner,regieren,حكم,統治する,править,governar,governare,다스리다
+ARISE,20,Grand Master Champion,उठ खड़े होना,ఉదయించడం,崛起,surgir,surgir,aufstehen,نهوض,立ち上がる,возникать,surgir,sorgere,일어나다
+BLARE,20,Grand Master Champion,शंखनाद या तेज़ आवाज़,మోత,鸣响,estruendo,retentir,schmettern,دوي,鳴り響く,греметь,bramido,squillo,울려퍼지다
+GLARE,20,Grand Master Champion,तीक्ष्ण दृष्टि या घूरना,తీక్షణమైన చూపు,怒视,resplandor,lueur vive,blenden,وهج ساطع,ギラギラする光,блик,clarão,bagliore accecante,눈부신 빛
+GRID,20,Grand Master Champion,ग्रिड या नियमित ढांचा,గ్రిడ్,网格,cuadrícula,grille,gitter,شبكة المربعات,格子,сетка,grade,griglia,격자
+GRIN,20,Grand Master Champion,मुस्कान,చిరునవ్వు,咧嘴笑,sonrisa,large sourire,grinsen,ابتسامة عريضة,にっこり笑う,ухмылка,sorriso largo,ghigno,활짝 웃다
+LARGE,20,Grand Master Champion,विशाल या बड़ा,పెద్ద,庞大的,grande,grand,groß,كبير,大きい,большой,grande,grande,커다란

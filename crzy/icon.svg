@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0f1d" />
+      <stop offset="50%" stop-color="#141830" />
+      <stop offset="100%" stop-color="#1d2347" />
+    </linearGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Tile Surface Gradient -->
+    <linearGradient id="tileGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a335c" />
+      <stop offset="100%" stop-color="#19203d" />
+    </linearGradient>
+
+    <!-- Accent Cyan Gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff" />
+      <stop offset="100%" stop-color="#0077ff" />
+    </linearGradient>
+
+    <!-- Gold Coin Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe600" />
+      <stop offset="100%" stop-color="#ff9900" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background App Canvas -->
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)" />
+
+  <!-- Connecting Neon Path (Word Mapping Trajectory) -->
+  <path d="M 120 380 Q 256 460 380 340 T 360 160" fill="none" stroke="#00d2ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" filter="url(#neonGlow)" />
+  <path d="M 120 380 Q 256 460 380 340 T 360 160" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+
+  <!-- Main Letter Tile Container -->
+  <g transform="translate(106, 106)">
+    <!-- Tile Drop Shadow -->
+    <rect x="0" y="16" width="300" height="300" rx="56" fill="rgba(0,0,0,0.5)" />
+    <!-- Tile Body -->
+    <rect x="0" y="0" width="300" height="300" rx="56" fill="url(#tileGrad)" stroke="url(#cyanGrad)" stroke-width="8" />
+    
+    <!-- Letter 'W' Character Glyph -->
+    <path d="M 68 85 L 102 215 L 150 120 L 198 215 L 232 85" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" filter="url(#neonGlow)" />
+    <path d="M 68 85 L 102 215 L 150 120 L 198 215 L 232 85" fill="none" stroke="#00d2ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Golden Economy Coin Badge -->
+  <g transform="translate(370, 75)">
+    <circle cx="36" cy="36" r="42" fill="rgba(0,0,0,0.4)" />
+    <circle cx="34" cy="34" r="40" fill="url(#goldGrad)" stroke="#fff" stroke-width="4" filter="url(#neonGlow)" />
+    <circle cx="34" cy="34" r="30" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-dasharray="8 4" />
+    <!-- Centered Coin Symbol -->
+    <text x="34" y="44" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-weight="900" font-size="30" fill="#ffffff" text-anchor="middle">¢</text>
+  </g>
+
+  <!-- Dynamic Selection Dot Accents -->
+  <circle cx="120" cy="380" r="14" fill="#00d2ff" stroke="#fff" stroke-width="4" filter="url(#neonGlow)" />
+  <circle cx="380" cy="340" r="14" fill="#00d2ff" stroke="#fff" stroke-width="4" filter="url(#neonGlow)" />
+</svg>
