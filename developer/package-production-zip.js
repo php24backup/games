@@ -8,14 +8,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-// Strict list of core production files required for Meta Facebook Instant Games & web portals
-// index.html and fbapp-config.json MUST be sitting at the absolute root level
+// Strict list of core production files required for the game to run on web portals
 const PRODUCTION_FILES = [
   'index.html',
-  'fbapp-config.json',
   'style.css',
   'app.js',
-  'game.js',
   'gameConfig.js',
   'audio.js',
   'sw.js',
@@ -23,7 +20,8 @@ const PRODUCTION_FILES = [
   'icon.svg',
   'LICENSE.txt',
   'words.json',
-  'words.csv'
+  'words.csv',
+  'fbapp-config.json'
 ];
 
 // Patterns that MUST NOT be included under any circumstances
@@ -47,13 +45,13 @@ function formatBytes(bytes) {
   return `${(bytes / Math.pow(k, i)).toFixed(2)} ${sizes[i]}`;
 }
 
-function packageFBBuildZip() {
+function packageProductionZip() {
   console.log('================================================================');
-  console.log('PACKAGING META FB INSTANT ARCHIVE: word-mapping-fb-build.zip');
+  console.log('PACKAGING PRODUCTION ARCHIVE: word-mapping-production.zip');
   console.log('================================================================\n');
 
   // 1. Audit production files on disk
-  console.log('--- STEP 1: Auditing Production Files at Root Level ---');
+  console.log('--- STEP 1: Auditing Production Files ---');
   let totalUncompressedBytes = 0;
   const verifiedFiles = [];
 
@@ -71,12 +69,7 @@ function packageFBBuildZip() {
       bytes: stat.size,
       formatted: formatBytes(stat.size)
     });
-    console.log(`  • [ROOT] ${filename.padEnd(20)}: ${formatBytes(stat.size).padStart(10)} (${stat.size.toLocaleString()} bytes)`);
-  }
-
-  // Confirm root placement of index.html and fbapp-config.json
-  if (!fs.existsSync(path.join(ROOT_DIR, 'index.html')) || !fs.existsSync(path.join(ROOT_DIR, 'fbapp-config.json'))) {
-    throw new Error('CRITICAL: index.html and fbapp-config.json MUST exist at the absolute root level.');
+    console.log(`  • ${filename.padEnd(20)}: ${formatBytes(stat.size).padStart(10)} (${stat.size.toLocaleString()} bytes)`);
   }
 
   // 2. Strict Exclusion Verification
@@ -88,46 +81,39 @@ function packageFBBuildZip() {
       }
     }
   }
-  console.log(`✓ All ${verifiedFiles.length} production files verified. Zero developer, test, or git files.`);
+  console.log('✓ All 12 production files passed strict exclusion criteria (0 forbidden files).');
 
-  // 3. Generate word-mapping-fb-build.zip & word-mapping-production.zip
+  // 3. Generate word-mapping-production.zip
   console.log('\n--- STEP 3: Creating Production ZIP Archive ---');
-  const fbZipName = 'word-mapping-fb-build.zip';
-  const rootFBZipPath = path.join(ROOT_DIR, fbZipName);
+  const zipName = 'word-mapping-production.zip';
+  const rootZipPath = path.join(ROOT_DIR, zipName);
   const distDir = path.join(ROOT_DIR, 'dist');
-  const distFBZipPath = path.join(distDir, fbZipName);
+  const distZipPath = path.join(distDir, zipName);
 
+  // If a previous archive exists, overwrite it cleanly
   const fileArgs = verifiedFiles.map(f => `"${f.name}"`).join(' ');
-  const zipCommand = `zip -9 -q "${rootFBZipPath}" ${fileArgs}`;
+  // Use zip -9 for maximum standard production compression
+  const zipCommand = `zip -9 -q "${rootZipPath}" ${fileArgs}`;
   execSync(zipCommand, { cwd: ROOT_DIR });
 
   if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir, { recursive: true });
   }
-  fs.copyFileSync(rootFBZipPath, distFBZipPath);
-
-  // Also sync word-mapping-production.zip
-  const prodZipName = 'word-mapping-production.zip';
-  const rootProdZipPath = path.join(ROOT_DIR, prodZipName);
-  const distProdZipPath = path.join(distDir, prodZipName);
-  fs.copyFileSync(rootFBZipPath, rootProdZipPath);
-  fs.copyFileSync(rootFBZipPath, distProdZipPath);
+  fs.copyFileSync(rootZipPath, distZipPath);
 
   // 4. Calculate Final Archive Sizes
-  const zipStat = fs.statSync(rootFBZipPath);
+  const zipStat = fs.statSync(rootZipPath);
   const totalZipBytes = zipStat.size;
   const compressionRatio = ((1 - (totalZipBytes / totalUncompressedBytes)) * 100).toFixed(1);
 
   // 5. Output Clear Metrics to Terminal
   console.log('\n================================================================');
-  console.log('META FB INSTANT ARCHIVE METRICS & SIZE REPORT');
+  console.log('PRODUCTION ARCHIVE METRICS & SIZE REPORT');
   console.log('================================================================');
-  console.log(`Archive Name               : ${fbZipName}`);
-  console.log(`Root Archive Path          : ${rootFBZipPath}`);
-  console.log(`Dist Archive Path          : ${distFBZipPath}`);
+  console.log(`Archive Name               : ${zipName}`);
+  console.log(`Destination Paths          : ${rootZipPath}`);
+  console.log(`                             ${distZipPath}`);
   console.log(`Files Packaged             : ${verifiedFiles.length} files`);
-  console.log(`Root index.html Present    : YES (sitting at absolute root)`);
-  console.log(`Root fbapp-config.json     : YES (sitting at absolute root)`);
   console.log(`Total Uncompressed Size    : ${formatBytes(totalUncompressedBytes)} (${totalUncompressedBytes.toLocaleString()} bytes)`);
   console.log(`Final Compressed ZIP Size  : ${formatBytes(totalZipBytes)} (${totalZipBytes.toLocaleString()} bytes)`);
   console.log(`Compression Efficiency     : ${compressionRatio}% reduction`);
@@ -137,12 +123,12 @@ function packageFBBuildZip() {
     uncompressedBytes: totalUncompressedBytes,
     zipBytes: totalZipBytes,
     files: verifiedFiles,
-    zipPath: rootFBZipPath
+    zipPath: rootZipPath
   };
 }
 
 try {
-  packageFBBuildZip();
+  packageProductionZip();
 } catch (err) {
   console.error('Packaging failed:', err);
   process.exit(1);

@@ -1,4 +1,4 @@
-Copyright (c) 2026 Rambir
+Copyright (c) 2026 Rambir Bhatiwal
 GitHub: https://github.com/rambir-bhatiwal
 All Rights Reserved.
 
